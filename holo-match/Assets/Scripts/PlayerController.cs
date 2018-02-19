@@ -5,10 +5,19 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
 
+        private Camera cam;
+
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+	    cam = GetComponentInChildren<Camera>();
+            cam.enabled = false;
 	}
+
+        public override void OnStartLocalPlayer()
+        {
+            cam.enabled = true;
+            GetComponent<Renderer>().material.color = Color.blue;
+        }
 	
 	// Update is called once per frame
 	void Update () {
