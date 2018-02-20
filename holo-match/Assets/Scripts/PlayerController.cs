@@ -7,6 +7,9 @@ public class PlayerController : NetworkBehaviour {
 
         private Camera cam;
 
+        public GameObject bulletPrefab;
+        public Transform bulletSpawn;
+
 	// Use this for initialization
 	void Awake () {
 	    cam = GetComponentInChildren<Camera>();
@@ -23,5 +26,13 @@ public class PlayerController : NetworkBehaviour {
 	void Update () {
             if (!isLocalPlayer)
                 return;
+            if (Input.GetButtonDown("Fire1"))
+                Fire();
 	}
+
+        private void Fire() {
+            GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 6);
+            Destroy(bullet, 2.0f);
+        }
 }
