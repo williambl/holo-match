@@ -7,6 +7,7 @@ public class PlayerController : NetworkBehaviour {
 
     private Camera cam;
 
+    public Player player = new Player();
 
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
