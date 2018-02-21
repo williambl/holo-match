@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
 
     private Camera cam;
+    private Canvas canvas;
+    private Text healthText;
 
     public Player player = new Player();
 
@@ -15,12 +18,17 @@ public class PlayerController : NetworkBehaviour {
     // Use this for initialization
     void Awake () {
 	cam = GetComponentInChildren<Camera>();
+        canvas = GetComponentInChildren<Canvas>();
+        healthText = canvas.transform.Find("healthText").GetComponent<Text>();
+
         cam.enabled = false;
+        canvas.enabled = false;
     }
 
     public override void OnStartLocalPlayer()
     {
         cam.enabled = true;
+        canvas.enabled = true;
         GetComponent<Renderer>().material.color = Color.blue;
     }
 	
@@ -30,6 +38,7 @@ public class PlayerController : NetworkBehaviour {
             return;
         if (Input.GetButtonDown("Fire1"))
             CmdFire();
+        healthText.text = player.health.ToString();
     }
 
     [Command]
