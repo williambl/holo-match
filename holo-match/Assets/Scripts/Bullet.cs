@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour {
     void OnCollisionEnter (Collision collision) {
         PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
         if (pc != null)
-            pc.player.TakeDamage(10);
+            pc.TakeDamage(10);
 
 	Destroy(gameObject);
     }

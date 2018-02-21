@@ -14,8 +14,6 @@ public class Player {
 
     public void TakeDamage(int amount) {
         health -= amount;
-        if (CheckIfDead())
-            Debug.Log("Dead!");
     }
 
     public bool CheckIfDead() {

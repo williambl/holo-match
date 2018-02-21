@@ -41,6 +41,11 @@ public class PlayerController : NetworkBehaviour {
         healthText.text = player.health.ToString();
     }
 
+    public void TakeDamage(int amount) {
+        if (isServer)
+            player.TakeDamage(amount); 
+    }
+
     [Command]
     private void CmdFire() {
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
