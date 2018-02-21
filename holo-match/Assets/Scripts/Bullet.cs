@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 	
-    void OnCollisionEnter () {
+    void OnCollisionEnter (Collision collision) {
+        PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
+        if (pc != null)
+            pc.player.TakeDamage(10);
+
 	Destroy(gameObject);
     }
 }
