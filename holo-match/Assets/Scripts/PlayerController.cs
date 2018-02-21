@@ -33,7 +33,7 @@ public class PlayerController : NetworkBehaviour {
         [Command]
         private void CmdFire() {
             GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
-            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 6, ForceMode.VelocityChange);
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
             NetworkServer.Spawn(bullet);
 
             Destroy(bullet, 2.0f);
