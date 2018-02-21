@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 143314180770755090}
   - component: {fileID: 82043752251225824}
   - component: {fileID: 114510824200374458}
+  - component: {fileID: 114590801196705524}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -556,6 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff9bf309fa7a403ebdb5ae9e25fbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 0}
   bulletPrefab: {fileID: 1208532469328258, guid: 0c77ce4d813b74aee8e6cce19fab926d,
     type: 2}
   bulletSpawn: {fileID: 4533836687913178}
@@ -677,6 +679,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114590801196705524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1680703164310126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b559a1cc620a24612a69352c27caf5f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 100
+  pcontroller: {fileID: 0}
 --- !u!114 &114913525735465174
 MonoBehaviour:
   m_ObjectHideFlags: 1

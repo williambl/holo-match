@@ -8,9 +8,8 @@ public class PlayerController : NetworkBehaviour {
 
     private Camera cam;
     private Canvas canvas;
-    private Text healthText;
 
-    public Player player = new Player();
+    public Health health;
 
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
@@ -19,7 +18,7 @@ public class PlayerController : NetworkBehaviour {
     void Awake () {
 	cam = GetComponentInChildren<Camera>();
         canvas = GetComponentInChildren<Canvas>();
-        healthText = canvas.transform.Find("healthText").GetComponent<Text>();
+        health = GetComponent<Health>();
 
         cam.enabled = false;
         canvas.enabled = false;
@@ -38,12 +37,11 @@ public class PlayerController : NetworkBehaviour {
             return;
         if (Input.GetButtonDown("Fire1"))
             CmdFire();
-        healthText.text = player.health.ToString();
     }
 
     public void TakeDamage(int amount) {
         if (isServer)
-            player.TakeDamage(amount); 
+            health.TakeDamage(amount); 
     }
 
     [Command]
