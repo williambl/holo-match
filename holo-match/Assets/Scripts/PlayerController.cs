@@ -27,12 +27,15 @@ public class PlayerController : NetworkBehaviour {
             if (!isLocalPlayer)
                 return;
             if (Input.GetButtonDown("Fire1"))
-                Fire();
+                CmdFire();
 	}
 
-        private void Fire() {
+        [Command]
+        private void CmdFire() {
             GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
             bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 6, ForceMode.VelocityChange);
+            NetworkServer.Spawn(bullet);
+
             Destroy(bullet, 2.0f);
         }
 }
