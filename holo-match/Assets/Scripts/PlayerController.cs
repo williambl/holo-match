@@ -8,6 +8,7 @@ public class PlayerController : NetworkBehaviour {
 
     private Camera cam;
     private Canvas canvas;
+    private NetworkStartPosition[] spawnPoints;
 
     public Health health;
 
@@ -22,6 +23,11 @@ public class PlayerController : NetworkBehaviour {
 
         cam.enabled = false;
         canvas.enabled = false;
+
+        if (isLocalPlayer)
+        {
+            spawnPoints = FindObjectsOfType<NetworkStartPosition>();               
+        }
     }
 
     public override void OnStartLocalPlayer()
@@ -49,7 +55,12 @@ public class PlayerController : NetworkBehaviour {
         if (!isLocalPlayer)
             return;
         health.health = health.maxHealth;
-        transform.position = Vector3.zero;
+        
+        Vector3 spawnPoint = Vector3.zero;
+
+        if (spawnPoints != null && spawnPoints.Length > 0)
+            spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
+        transform.position = spawnPoint;
     } 
 
     [Command]
