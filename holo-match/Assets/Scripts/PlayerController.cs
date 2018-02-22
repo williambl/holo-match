@@ -15,6 +15,9 @@ public class PlayerController : NetworkBehaviour {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
 
+    public IWeapon[] weapons = new IWeapon[2];
+    public int equippedWeapon = 0;
+
     // Use this for initialization
     void Awake () {
 	cam = GetComponentInChildren<Camera>();
@@ -83,10 +86,6 @@ public class PlayerController : NetworkBehaviour {
 
     [Command]
     private void CmdFire() {
-        GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
-        NetworkServer.Spawn(bullet);
-
-        Destroy(bullet, 2.0f);
+        weapons[equippedWeapon].Fire();
     }
 }
