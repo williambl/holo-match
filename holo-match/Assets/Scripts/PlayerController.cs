@@ -44,6 +44,14 @@ public class PlayerController : NetworkBehaviour {
             health.TakeDamage(amount); 
     }
 
+    [ClientRpc]
+    public void RpcRespawn() {
+        if (!isLocalPlayer)
+            return;
+        health.health = health.maxHealth;
+        transform.position = Vector3.zero;
+    } 
+
     [Command]
     private void CmdFire() {
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);

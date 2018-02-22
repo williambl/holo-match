@@ -32,7 +32,7 @@ public class Health : NetworkBehaviour {
 
     public void OnHealthChange (int healthIn) {
         if (CheckIfDead())
-           Debug.Log("Dead"); 
+            pcontroller.RpcRespawn();
         healthText.text = healthIn.ToString();
     }
 }
