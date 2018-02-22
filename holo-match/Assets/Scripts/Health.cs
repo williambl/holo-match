@@ -24,6 +24,10 @@ public class Health : NetworkBehaviour {
 
     public void TakeDamage(int amount) {
         health -= amount;
+        if (CheckIfDead()) {
+            health = maxHealth;
+            pcontroller.RpcRespawn();
+        }
     }
 
     public bool CheckIfDead() {
@@ -31,8 +35,6 @@ public class Health : NetworkBehaviour {
     }
 
     public void OnHealthChange (int healthIn) {
-        if (CheckIfDead())
-            pcontroller.RpcRespawn();
         healthText.text = healthIn.ToString();
     }
 }
