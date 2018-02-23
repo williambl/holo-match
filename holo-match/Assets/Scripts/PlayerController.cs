@@ -15,7 +15,7 @@ public class PlayerController : NetworkBehaviour {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
 
-    public IWeapon[] weapons = new IWeapon[2];
+    public Weapon[] weapons = new Weapon[2];
     public int equippedWeapon = 0;
 
     // Use this for initialization
