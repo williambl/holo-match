@@ -7,5 +7,7 @@ public class Weapon {
     public int maxAmmo;
     public bool infiniteAmmo;
 
+    public int fireRate;
+
     public void Fire () {}
 }
