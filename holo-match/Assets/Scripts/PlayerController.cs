@@ -86,6 +86,10 @@ public class PlayerController : NetworkBehaviour {
 
     [Command]
     private void CmdFire() {
+        if (Time.time < weapons[equippedWeapon].nextFireTime)
+            return;
+        weapons[equippedWeapon].nextFireTime = Time.time + weapons[equippedWeapon].fireRate;
+
         weapons[equippedWeapon].Fire();
     }
 }
