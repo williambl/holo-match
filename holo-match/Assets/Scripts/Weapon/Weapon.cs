@@ -2,6 +2,7 @@ public class Weapon {
 
     public EnumAmmoType ammoType;
     public EnumWeaponType type;
+    publoic EnumFireType fireType;
 
     public int ammo;
     public int maxAmmo;
