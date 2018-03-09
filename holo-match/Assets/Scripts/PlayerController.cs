@@ -39,8 +39,17 @@ public class PlayerController : NetworkBehaviour {
     void Update () {
         if (!isLocalPlayer)
             return;
-        if (Input.GetButtonDown("Fire1"))
-            CmdFire();
+        switch (inventory.GetEquipped().fireType) {
+            case EnumFireType.SINGLE_SHOT:
+                if (Input.GetButtonDown("Fire1")) CmdFire();
+                break;
+            case EnumFireType.SEMI_AUTO:
+                if (Input.GetButtonDown("Fire1")) CmdFire();
+                break;
+            case EnumFireType.AUTO:
+                if (Input.GetButton("Fire1")) CmdFire();
+                break;
+        }
     }
 
     public void TakeDamage(int amount) {
