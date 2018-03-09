@@ -85,10 +85,13 @@ public class PlayerController : NetworkBehaviour {
 
     [Command]
     private void CmdFire() {
-        if (Time.time < inventory.GetEquipped().nextFireTime)
-            return;
-        inventory.GetEquipped().nextFireTime = Time.time + inventory.GetEquipped().fireCooldown;
+        Weapon weapon = inventory.GetEquipped();
 
-        inventory.GetEquipped().Fire();
+        if (Time.time < weapon.nextFireTime)
+            return;
+        weapon.nextFireTime = Time.time + weapon.fireCooldown;
+
+        weapon.Fire();
+        inventory.UpdateEquipped(weapon, inventory.equippedWeapon);
     }
 }

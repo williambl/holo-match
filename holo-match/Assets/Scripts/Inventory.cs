@@ -19,4 +19,15 @@ public class Inventory {
     public void SwapEquipped () {
         equippedWeapon = (equippedWeapon == 0) ? 1 : 0;
     }
+
+    public void UpdateEquipped (Weapon weaponIn, int slot) {
+        switch (slot) {
+            case 0:
+                weapon0 = weaponIn;
+                break;
+            case 1:
+                weapon1 = weaponIn;
+                break;
+        }
+    }
 }
