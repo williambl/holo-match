@@ -15,8 +15,7 @@ public class PlayerController : NetworkBehaviour {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
 
-    public Weapon[] weapons = new Weapon[2];
-    public int equippedWeapon = 0;
+    public Inventory inventory = new Inventory();
 
     // Use this for initialization
     void Awake () {
@@ -86,10 +85,10 @@ public class PlayerController : NetworkBehaviour {
 
     [Command]
     private void CmdFire() {
-        if (Time.time < weapons[equippedWeapon].nextFireTime)
+        if (Time.time < inventory.GetEquipped().nextFireTime)
             return;
-        weapons[equippedWeapon].nextFireTime = Time.time + weapons[equippedWeapon].fireRate;
+        inventory.GetEquipped().nextFireTime = Time.time + inventory.GetEquipped().fireCooldown;
 
-        weapons[equippedWeapon].Fire();
+        inventory.GetEquipped().Fire();
     }
 }
