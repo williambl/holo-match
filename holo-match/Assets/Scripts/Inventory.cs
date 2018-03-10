@@ -1,9 +1,13 @@
+using System.Collections.Generic;
+
 public class Inventory {
     
     public Weapon weapon0;
     public Weapon weapon1;
 
     public int equippedWeapon = 0;
+
+    public Dictionary<EnumAmmoType, int> ammo;
 
     public Weapon GetEquipped () {
         switch (equippedWeapon) {
@@ -29,5 +33,20 @@ public class Inventory {
                 weapon1 = weaponIn;
                 break;
         }
+    }
+
+    public int GetAmmo (EnumAmmoType type) {
+        int amount;
+        ammo.TryGetValue(type, out amount);
+        return amount;
+    }
+
+    public void AddAmmo (EnumAmmoType type, int amount) {
+        int currentAmount;
+
+        ammo.TryGetValue(type, out currentAmount);
+        ammo.Remove(type);
+
+        ammo.Add(type, currentAmount+amount);
     }
 }
