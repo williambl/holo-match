@@ -25,6 +25,12 @@ public class PlayerController : NetworkBehaviour {
 
         cam.enabled = false;
         canvas.enabled = false;
+
+        AssaultRifle rifle = new AssaultRifle();
+        rifle.bulletPrefab = bulletPrefab;
+        rifle.bulletSpawn = bulletSpawn;
+
+        inventory.weapon0 = rifle;
     }
 
     public override void OnStartLocalPlayer()
