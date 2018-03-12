@@ -12,6 +12,7 @@ public class AssaultRifle : Weapon {
     public new bool infiniteAmmo = false;
 
     public new float fireCooldown = 0.1f;
+    public new float reloadTime = 5f;
 
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
@@ -22,5 +23,9 @@ public class AssaultRifle : Weapon {
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 18;
         NetworkServer.Spawn(bullet);
         ammo--;
+    }
+
+    public new void Reload () {
+        ammo = maxAmmo;
     }
 }
