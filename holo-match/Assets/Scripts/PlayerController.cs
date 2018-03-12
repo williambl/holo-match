@@ -46,6 +46,10 @@ public class PlayerController : NetworkBehaviour {
     void Update () {
         if (!isLocalPlayer)
             return;
+
+        if (Input.GetAxis("Mouse ScrollWheel") != 0)
+            inventory.SwapEquipped();
+
         switch (inventory.GetEquipped().fireType) {
             case EnumFireType.SINGLE_SHOT:
                 if (Input.GetButtonDown("Fire1")) CmdFire();
