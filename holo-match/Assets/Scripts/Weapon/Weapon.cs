@@ -6,7 +6,7 @@ public class Weapon {
     public EnumWeaponType type;
     public EnumFireType fireType;
 
-    public Mesh mesh;
+    public GameObject gObject;
 
     public int ammo;
     public int maxAmmo;
