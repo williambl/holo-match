@@ -4,9 +4,7 @@ using UnityEngine.Networking;
 
 public class Inventory : NetworkBehaviour {
     
-    [SyncVar]
     public Weapon weapon0;
-    [SyncVar]
     public Weapon weapon1;
 
     [SyncVar]

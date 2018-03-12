@@ -31,7 +31,7 @@ public class PlayerController : NetworkBehaviour {
         rifle.bulletPrefab = bulletPrefab;
         rifle.bulletSpawn = bulletSpawn;
 
-        inventory.weapon0 = rifle;
+        inventory.UpdateEquipped(rifle, 0);
     }
 
     public override void OnStartLocalPlayer()
@@ -112,7 +112,6 @@ public class PlayerController : NetworkBehaviour {
         weapon.nextFireTime = Time.time + weapon.fireCooldown;
         Debug.Log("New next time: " + weapon.nextFireTime);
 
-        Debug.Log("Weapon: " + weapon.type);
         weapon.Fire();
         inventory.UpdateEquipped(weapon, inventory.equippedWeapon);
     }
