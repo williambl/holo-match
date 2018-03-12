@@ -6,6 +6,7 @@ public class Weapon {
     public EnumWeaponType type;
     public EnumFireType fireType;
 
+    public GameObject prefab;
     public GameObject gObject;
 
     public int ammo;
