@@ -49,8 +49,11 @@ public class PlayerController : NetworkBehaviour {
 
         if (Input.GetAxis("Mouse ScrollWheel") != 0)
             inventory.SwapEquipped();
+    
+        dynamic equipped = inventory.GetEquipped();
+        EnumFireType type = equipped.fireType;
 
-        switch (inventory.GetEquipped().fireType) {
+        switch (type) {
             case EnumFireType.SINGLE_SHOT:
                 if (Input.GetButtonDown("Fire1")) CmdFire();
                 break;
@@ -58,7 +61,7 @@ public class PlayerController : NetworkBehaviour {
                 if (Input.GetButtonDown("Fire1")) CmdFire();
                 break;
             case EnumFireType.AUTO:
-                if (Input.GetButton("Fire1")) CmdFire();
+                if (Input.GetButton("Fire1")) { Debug.Log("Firing!!!"); CmdFire(); }
                 break;
         }
     }
@@ -105,7 +108,7 @@ public class PlayerController : NetworkBehaviour {
 
     [Command]
     private void CmdFire() {
-        Weapon weapon = inventory.GetEquipped();
+        dynamic weapon = inventory.GetEquipped();
 
         Debug.Log("Time: " + Time.time);
         Debug.Log("Next time: " + weapon.nextFireTime);
@@ -116,8 +119,7 @@ public class PlayerController : NetworkBehaviour {
         weapon.nextFireTime = Time.time + weapon.fireCooldown;
         Debug.Log("New next time: " + weapon.nextFireTime);
 
-        dynamic dynweapon = weapon;
-        dynweapon.Fire();
-        inventory.UpdateEquipped(dynweapon, inventory.equippedWeapon);
+        weapon.Fire();
+        inventory.UpdateEquipped(weapon, inventory.equippedWeapon);
     }
 }
