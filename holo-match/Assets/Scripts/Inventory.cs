@@ -1,10 +1,15 @@
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
 
-public class Inventory {
+public class Inventory : NetworkBehaviour {
     
+    [SyncVar]
     public Weapon weapon0;
+    [SyncVar]
     public Weapon weapon1;
 
+    [SyncVar]
     public int equippedWeapon = 0;
 
     public Dictionary<EnumAmmoType, int> ammo;

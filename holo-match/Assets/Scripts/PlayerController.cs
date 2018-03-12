@@ -15,13 +15,14 @@ public class PlayerController : NetworkBehaviour {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
 
-    public Inventory inventory = new Inventory();
+    public Inventory inventory;
 
     // Use this for initialization
     void Awake () {
 	cam = GetComponentInChildren<Camera>();
         canvas = GetComponentInChildren<Canvas>();
         health = GetComponent<Health>();
+        inventory = GetComponent<Inventory>();
 
         cam.enabled = false;
         canvas.enabled = false;
@@ -102,10 +103,16 @@ public class PlayerController : NetworkBehaviour {
     private void CmdFire() {
         Weapon weapon = inventory.GetEquipped();
 
+        Debug.Log("Time: " + Time.time);
+        Debug.Log("Next time: " + weapon.nextFireTime);
+
         if (Time.time < weapon.nextFireTime)
             return;
-        weapon.nextFireTime = Time.time + weapon.fireCooldown;
 
+        weapon.nextFireTime = Time.time + weapon.fireCooldown;
+        Debug.Log("New next time: " + weapon.nextFireTime);
+
+        Debug.Log("Weapon: " + weapon.type);
         weapon.Fire();
         inventory.UpdateEquipped(weapon, inventory.equippedWeapon);
     }
