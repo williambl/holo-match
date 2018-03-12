@@ -19,6 +19,7 @@ public class Weapon {
     public float reloadTime;
 
     public void Init (GameObject player) {}
+    public void End () {}
     public void Fire () {}
     public void Reload () {}
 }

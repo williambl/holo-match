@@ -28,6 +28,12 @@ public class AssaultRifle : Weapon {
         bulletSpawn = gObject.transform.Find("ShootPoint");
     }
 
+    public new void End () {
+        GameObject.Destroy(gObject);
+        gObject = null;
+        bulletSpawn = null;
+    }
+
     public new void Fire () {
         Debug.Log("Firing");
         GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.parent.parent.rotation);
