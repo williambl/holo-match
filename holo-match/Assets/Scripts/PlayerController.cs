@@ -112,7 +112,8 @@ public class PlayerController : NetworkBehaviour {
         weapon.nextFireTime = Time.time + weapon.fireCooldown;
         Debug.Log("New next time: " + weapon.nextFireTime);
 
-        ((AssaultRifle)weapon).Fire();
-        inventory.UpdateEquipped(weapon, inventory.equippedWeapon);
+        dynamic dynweapon = weapon;
+        dynweapon.Fire();
+        inventory.UpdateEquipped(dynweapon, inventory.equippedWeapon);
     }
 }

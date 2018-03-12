@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 82043752251225824}
   - component: {fileID: 114510824200374458}
   - component: {fileID: 114590801196705524}
+  - component: {fileID: 114322190548179472}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -525,6 +526,18 @@ MonoBehaviour:
     i15: 69
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114322190548179472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1680703164310126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62803507ecc3346cc9a508c504cac1a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedWeapon: 0
 --- !u!114 &114420054109373008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -557,10 +570,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff9bf309fa7a403ebdb5ae9e25fbb88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoints: []
   health: {fileID: 0}
   bulletPrefab: {fileID: 1208532469328258, guid: 0c77ce4d813b74aee8e6cce19fab926d,
     type: 2}
   bulletSpawn: {fileID: 4533836687913178}
+  inventory: {fileID: 0}
 --- !u!114 &114510824200374458
 MonoBehaviour:
   m_ObjectHideFlags: 1
