@@ -18,7 +18,7 @@ public class AssaultRifle : Weapon {
 
     public new void Fire () {
         Debug.Log("Firing");
-        GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+        GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.parent.parent.rotation);
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
         NetworkServer.Spawn(bullet);
     }
