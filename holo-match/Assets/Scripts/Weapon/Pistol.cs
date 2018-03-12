@@ -21,5 +21,6 @@ public class Pistol : Weapon {
         GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.parent.parent.rotation);
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 18;
         NetworkServer.Spawn(bullet);
+        ammo--;
     }
 }
