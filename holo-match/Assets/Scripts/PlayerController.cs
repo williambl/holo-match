@@ -29,7 +29,6 @@ public class PlayerController : NetworkBehaviour {
 
         AssaultRifle rifle = new AssaultRifle();
         rifle.bulletPrefab = bulletPrefab;
-        rifle.bulletSpawn = bulletSpawn;
 
         Pistol pistol = new Pistol();
         pistol.bulletPrefab = bulletPrefab;
@@ -37,6 +36,8 @@ public class PlayerController : NetworkBehaviour {
 
         inventory.UpdateEquipped(rifle, 0);
         inventory.UpdateEquipped(pistol, 1);
+
+        inventory.OnEquippedChange(0);
     }
 
     public override void OnStartLocalPlayer()

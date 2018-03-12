@@ -7,7 +7,7 @@ public class Inventory : NetworkBehaviour {
     public Weapon weapon0;
     public Weapon weapon1;
 
-    [SyncVar]
+    [SyncVar(hook="OnEquippedChange")]
     public int equippedWeapon = 0;
 
     public Dictionary<EnumAmmoType, int> ammo;
@@ -36,6 +36,12 @@ public class Inventory : NetworkBehaviour {
                 weapon1 = weaponIn;
                 break;
         }
+        OnEquippedChange(equippedWeapon);
+    }
+
+    public void OnEquippedChange (int newEquipped) {
+        dynamic equipped = GetEquipped();
+        equipped.Init(gameObject);
     }
 
     public int GetAmmo (EnumAmmoType type) {

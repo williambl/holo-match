@@ -14,10 +14,19 @@ public class AssaultRifle : Weapon {
     public new float fireCooldown = 0.1f;
     public new float reloadTime = 5f;
 
-    public new GameObject prefab = Resources.Load("Prefabs/AssaultRifle") as GameObject;
+    public new GameObject prefab = Resources.Load("Prefabs/assault_rifle") as GameObject;
 
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
+
+    public new void Init (GameObject player) {
+        if (gObject != null)
+            return;
+        Vector3 spawnPosition = player.transform.position + new Vector3(0, 0.5f, 0);
+        gObject = Object.Instantiate(prefab, spawnPosition, player.transform.rotation, player.transform);
+
+        bulletSpawn = gObject.transform.Find("ShootPoint");
+    }
 
     public new void Fire () {
         Debug.Log("Firing");
