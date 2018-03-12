@@ -31,7 +31,12 @@ public class PlayerController : NetworkBehaviour {
         rifle.bulletPrefab = bulletPrefab;
         rifle.bulletSpawn = bulletSpawn;
 
+        Pistol pistol = new Pistol();
+        pistol.bulletPrefab = bulletPrefab;
+        pistol.bulletSpawn = bulletSpawn;
+
         inventory.UpdateEquipped(rifle, 0);
+        inventory.UpdateEquipped(pistol, 1);
     }
 
     public override void OnStartLocalPlayer()
