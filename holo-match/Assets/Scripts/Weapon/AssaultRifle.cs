@@ -14,6 +14,8 @@ public class AssaultRifle : Weapon {
     public new float fireCooldown = 0.1f;
     public new float reloadTime = 5f;
 
+    public new GameObject prefab = Resources.Load("Prefabs/AssaultRifle") as GameObject;
+
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
 
