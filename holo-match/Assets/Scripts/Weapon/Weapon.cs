@@ -11,5 +11,8 @@ public class Weapon {
     public float fireCooldown;
     public float nextFireTime;
 
+    public float reloadTime;
+
     public void Fire () {}
+    public void Reload () {}
 }

@@ -118,6 +118,17 @@ public class PlayerController : NetworkBehaviour {
         Debug.Log("Time: " + Time.time);
         Debug.Log("Next time: " + weapon.nextFireTime);
 
+        Debug.Log(weapon.ammo);
+        Debug.Log(weapon.infiniteAmmo);
+        if (weapon.ammo <= 0 && !weapon.infiniteAmmo) {
+
+            weapon.nextFireTime = Time.time + weapon.reloadTime;
+            Debug.Log("Time after reload: " + weapon.nextFireTime);
+
+            weapon.Reload();
+            return;
+        }
+
         if (Time.time < weapon.nextFireTime)
             return;
 
