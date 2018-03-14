@@ -24,6 +24,8 @@ public class Inventory : NetworkBehaviour {
     }
 
     public void SwapEquipped () {
+        dynamic equipped = GetEquipped();
+        equipped.End();
         equippedWeapon = (equippedWeapon == 0) ? 1 : 0;
     }
 
@@ -36,7 +38,6 @@ public class Inventory : NetworkBehaviour {
                 weapon1 = weaponIn;
                 break;
         }
-        OnEquippedChange(equippedWeapon);
     }
 
     public void OnEquippedChange (int newEquipped) {

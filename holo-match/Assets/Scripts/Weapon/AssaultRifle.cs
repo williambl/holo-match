@@ -29,6 +29,7 @@ public class AssaultRifle : Weapon {
     }
 
     public new void End () {
+        Debug.Log("ending");
         GameObject.Destroy(gObject);
         gObject = null;
         bulletSpawn = null;
