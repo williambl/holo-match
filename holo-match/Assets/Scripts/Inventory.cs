@@ -12,20 +12,18 @@ public class Inventory : NetworkBehaviour {
 
     public Dictionary<EnumAmmoType, int> ammo;
 
-    public Weapon GetEquipped () {
+    public Weapon GetEquipped (bool swap = false) {
         switch (equippedWeapon) {
             case 0:
-                return weapon0;
+                return swap ? weapon1 : weapon0;
             case 1:
-                return weapon1;
+                return swap ? weapon0 : weapon1;
             default:
                 return null;
         }
     }
 
     public void SwapEquipped () {
-        dynamic equipped = GetEquipped();
-        equipped.End();
         equippedWeapon = (equippedWeapon == 0) ? 1 : 0;
     }
 
@@ -41,6 +39,9 @@ public class Inventory : NetworkBehaviour {
     }
 
     public void OnEquippedChange (int newEquipped) {
+        dynamic prevEquipped = GetEquipped(true);
+        prevEquipped.End();
+
         dynamic equipped = GetEquipped();
         equipped.Init(gameObject);
     }
