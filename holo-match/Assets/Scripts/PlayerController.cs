@@ -26,18 +26,6 @@ public class PlayerController : NetworkBehaviour {
 
         cam.enabled = false;
         canvas.enabled = false;
-
-        AssaultRifle rifle = new AssaultRifle();
-        rifle.bulletPrefab = bulletPrefab;
-
-        Pistol pistol = new Pistol();
-        pistol.bulletPrefab = bulletPrefab;
-        pistol.bulletSpawn = bulletSpawn;
-
-        inventory.UpdateEquipped(rifle, 0);
-        inventory.UpdateEquipped(pistol, 1);
-
-        inventory.OnEquippedChange(0);
     }
 
     public override void OnStartLocalPlayer()
@@ -52,24 +40,6 @@ public class PlayerController : NetworkBehaviour {
     void Update () {
         if (!isLocalPlayer)
             return;
-
-        if (Input.GetAxis("Mouse ScrollWheel") != 0)
-            inventory.SwapEquipped();
-    
-        dynamic equipped = inventory.GetEquipped();
-        EnumFireType type = equipped.fireType;
-
-        switch (type) {
-            case EnumFireType.SINGLE_SHOT:
-                if (Input.GetButtonDown("Fire1")) CmdFire();
-                break;
-            case EnumFireType.SEMI_AUTO:
-                if (Input.GetButtonDown("Fire1")) CmdFire();
-                break;
-            case EnumFireType.AUTO:
-                if (Input.GetButton("Fire1")) { Debug.Log("Firing!!!"); CmdFire(); }
-                break;
-        }
     }
 
     public void TakeDamage(int amount) {
@@ -112,31 +82,4 @@ public class PlayerController : NetworkBehaviour {
         return true;
     }
 
-    [Command]
-    private void CmdFire() {
-        dynamic weapon = inventory.GetEquipped();
-
-        Debug.Log("Time: " + Time.time);
-        Debug.Log("Next time: " + weapon.nextFireTime);
-
-        Debug.Log(weapon.ammo);
-        Debug.Log(weapon.infiniteAmmo);
-        if (weapon.ammo <= 0 && !weapon.infiniteAmmo) {
-
-            weapon.nextFireTime = Time.time + weapon.reloadTime;
-            Debug.Log("Time after reload: " + weapon.nextFireTime);
-
-            weapon.Reload();
-            return;
-        }
-
-        if (Time.time < weapon.nextFireTime)
-            return;
-
-        weapon.nextFireTime = Time.time + weapon.fireCooldown;
-        Debug.Log("New next time: " + weapon.nextFireTime);
-
-        weapon.Fire();
-        inventory.UpdateEquipped(weapon, inventory.equippedWeapon);
-    }
 }
