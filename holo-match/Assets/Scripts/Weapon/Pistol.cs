@@ -14,25 +14,16 @@ public class Pistol : Weapon {
     public new float fireCooldown = 0.1f;
     public new float reloadTime = 3f;
 
-    public new GameObject prefab = Resources.Load("Prefabs/pistol") as GameObject;
-
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
 
-    public new void Init (GameObject player) {
-        if (gObject != null)
-            return;
-        Vector3 spawnPosition = player.transform.position + new Vector3(0, 0.5f, 0.5f);
-        gObject = Object.Instantiate(prefab, spawnPosition, player.transform.rotation, player.transform);
+    new void Start () {
+    }
 
-        bulletSpawn = gObject.transform.Find("ShootPoint");
+    new void Update () {
     }
 
     public new void End () {
-        Debug.Log("ending");
-        GameObject.Destroy(gObject);
-        gObject = null;
-        bulletSpawn = null;
     }
 
     public new void Fire () {
