@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4185100003093606}
   - component: {fileID: 114150524056090542}
+  - component: {fileID: 114359940089805754}
   m_Layer: 0
   m_Name: pistol
   m_TagString: Untagged
@@ -175,6 +176,7 @@ GameObject:
   - component: {fileID: 114510824200374458}
   - component: {fileID: 114590801196705524}
   - component: {fileID: 114944332483404502}
+  - component: {fileID: 114673598144257698}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -923,6 +925,38 @@ MonoBehaviour:
     i15: 69
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114359940089805754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016463329518776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 158
+    i1: 196
+    i2: 183
+    i3: 72
+    i4: 236
+    i5: 59
+    i6: 244
+    i7: 46
+    i8: 219
+    i9: 240
+    i10: 31
+    i11: 56
+    i12: 3
+    i13: 195
+    i14: 100
+    i15: 69
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114420054109373008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1136,6 +1170,17 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   pcontroller: {fileID: 0}
+--- !u!114 &114673598144257698
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1680703164310126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806a966fb6eb54f2e848f82a61463f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114913525735465174
 MonoBehaviour:
   m_ObjectHideFlags: 1

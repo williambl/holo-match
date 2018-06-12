@@ -25,9 +25,11 @@ public class AssaultRifle : Weapon {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     PlayerController pc;
+    WeaponUtils util;
 
     new void Start () {
         pc = transform.parent.parent.parent.GetComponent<PlayerController>();
+        util = transform.parent.parent.parent.GetComponent<WeaponUtils>();
     }
 
     new void Update () {
@@ -58,18 +60,24 @@ public class AssaultRifle : Weapon {
     }
 
     public new void Fire () {
-        Debug.Log("Firing");
-        //Create a new bullet GameObject
-        GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.parent.parent.rotation);
-        //Give it a push
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 18;
-        //Spawn it on the network
-        NetworkServer.Spawn(bullet);
+        Debug.Log("firing?");
+        InstantiateAndAccelerate();
         ammo--;
         nextFireTime = Time.time + fireCooldown; 
     }
 
     public new void Reload () {
         ammo = maxAmmo;
+    }
+
+    public void InstantiateAndAccelerate () {
+        Debug.Log("FIRING");
+
+        //Create a new bullet GameObject
+        GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+        //Give it a push
+        bullet.GetComponent<Rigidbody>().velocity = transform.forward * 18;
+        //Spawn it on the network
+        NetworkServer.Spawn(bullet);
     }
 }
