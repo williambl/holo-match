@@ -25,15 +25,14 @@ public class AssaultRifle : Weapon {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     PlayerController pc;
-    WeaponUtils util;
+    WeaponController wc;
 
     new void Start () {
-        pc = transform.parent.parent.parent.GetComponent<PlayerController>();
-        util = transform.parent.parent.parent.GetComponent<WeaponUtils>();
+        pc = GetComponent<PlayerController>();
     }
 
     new void Update () {
-        if (!pc.isLocalPlayer)
+        if (isLocalPlayer)
             return;
 
         if (Input.GetButton("Fire1")) {
@@ -61,7 +60,7 @@ public class AssaultRifle : Weapon {
 
     public new void Fire () {
         Debug.Log("firing?");
-        InstantiateAndAccelerate();
+        CmdInstantiateAndAccelerate();
         ammo--;
         nextFireTime = Time.time + fireCooldown; 
     }
@@ -70,7 +69,8 @@ public class AssaultRifle : Weapon {
         ammo = maxAmmo;
     }
 
-    public void InstantiateAndAccelerate () {
+    [Command]
+    public void CmdInstantiateAndAccelerate () {
         Debug.Log("FIRING");
 
         //Create a new bullet GameObject

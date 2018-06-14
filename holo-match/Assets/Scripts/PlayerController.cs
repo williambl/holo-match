@@ -30,10 +30,12 @@ public class PlayerController : NetworkBehaviour {
 
     public override void OnStartLocalPlayer()
     {
+        Debug.Log("initialising");
         cam.enabled = true;
         canvas.enabled = true;
         GetComponent<Renderer>().material.color = Color.blue;
-        spawnPoints = FindObjectsOfType<NetworkStartPosition>();               
+        spawnPoints = FindObjectsOfType<NetworkStartPosition>();
+        inventory.weapon0.GetComponentInChildren<WeaponController>().Init();
     }
 	
     // Update is called once per frame

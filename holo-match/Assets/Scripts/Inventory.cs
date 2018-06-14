@@ -15,7 +15,15 @@ public class Inventory : NetworkBehaviour {
     public GameObject weapon2;
 
     void Start () {
+        Debug.Log("starting");
         EquipWeapon();
+    }
+
+    public void OnStartLocalPlayer () {
+        Debug.Log("initialising");
+        weapon0.GetComponent<WeaponController>().Init();
+        //weapon1.GetComponent<WeaponController>().Init();
+        //weapon2.GetComponent<WeaponController>().Init();
     }
 
     void Update () {
