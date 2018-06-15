@@ -19,13 +19,6 @@ public class Inventory : NetworkBehaviour {
         EquipWeapon();
     }
 
-    public void OnStartLocalPlayer () {
-        Debug.Log("initialising");
-        weapon0.GetComponent<WeaponController>().Init();
-        //weapon1.GetComponent<WeaponController>().Init();
-        //weapon2.GetComponent<WeaponController>().Init();
-    }
-
     void Update () {
         if (!isLocalPlayer)
             return;

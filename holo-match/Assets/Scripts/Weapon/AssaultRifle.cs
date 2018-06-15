@@ -25,14 +25,13 @@ public class AssaultRifle : Weapon {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     PlayerController pc;
-    WeaponController wc;
 
     new void Start () {
         pc = GetComponent<PlayerController>();
     }
 
     new void Update () {
-        if (isLocalPlayer)
+        if (!isLocalPlayer)
             return;
 
         if (Input.GetButton("Fire1")) {

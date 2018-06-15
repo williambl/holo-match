@@ -26,6 +26,7 @@ public class PlayerController : NetworkBehaviour {
 
         cam.enabled = false;
         canvas.enabled = false;
+        MoveWeapon(inventory.weapon0, gameObject);
     }
 
     public override void OnStartLocalPlayer()
@@ -35,8 +36,26 @@ public class PlayerController : NetworkBehaviour {
         canvas.enabled = true;
         GetComponent<Renderer>().material.color = Color.blue;
         spawnPoints = FindObjectsOfType<NetworkStartPosition>();
-        inventory.weapon0.GetComponentInChildren<WeaponController>().Init();
     }
+
+    void MoveWeapon(GameObject original, GameObject target) {
+        var origWeapon = original.GetComponentInChildren<Weapon>();
+        CopyComponent<Weapon>(origWeapon, target);
+        Destroy(origWeapon);
+    }
+
+    //From http://answers.unity.com/answers/589400/view.html
+    T CopyComponent<T>(T original, GameObject destination) where T : Component {
+        System.Type type = original.GetType();
+        Component copy = destination.AddComponent(type);
+        System.Reflection.FieldInfo[] fields = type.GetFields();
+        foreach (System.Reflection.FieldInfo field in fields)
+        {
+            field.SetValue(copy, field.GetValue(original));
+        }
+        return copy as T;
+    }
+
 	
     // Update is called once per frame
     void Update () {

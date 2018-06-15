@@ -102,7 +102,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4418249361838094}
   - component: {fileID: 114478980543305580}
-  - component: {fileID: 114138820138577346}
   m_Layer: 0
   m_Name: assault_rifle
   m_TagString: Untagged
@@ -177,7 +176,6 @@ GameObject:
   - component: {fileID: 114510824200374458}
   - component: {fileID: 114590801196705524}
   - component: {fileID: 114944332483404502}
-  - component: {fileID: 114673598144257698}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -839,17 +837,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114138820138577346
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1441642521723206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 706260d10b9d046b9ae943b003e63ac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114150524056090542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1182,17 +1169,6 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   pcontroller: {fileID: 0}
---- !u!114 &114673598144257698
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1680703164310126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806a966fb6eb54f2e848f82a61463f17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114913525735465174
 MonoBehaviour:
   m_ObjectHideFlags: 1
