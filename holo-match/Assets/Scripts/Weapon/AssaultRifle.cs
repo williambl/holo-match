@@ -31,7 +31,7 @@ public class AssaultRifle : Weapon {
     }
 
     new void Update () {
-        if (!isLocalPlayer)
+        if (!isLocalPlayer || !weaponGObject.activeInHierarchy)
             return;
 
         if (Input.GetButton("Fire1")) {

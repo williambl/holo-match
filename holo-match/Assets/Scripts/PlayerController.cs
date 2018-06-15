@@ -27,6 +27,8 @@ public class PlayerController : NetworkBehaviour {
         cam.enabled = false;
         canvas.enabled = false;
         MoveWeapon(inventory.weapon0, gameObject);
+        MoveWeapon(inventory.weapon1, gameObject);
+        MoveWeapon(inventory.weapon2, gameObject);
     }
 
     public override void OnStartLocalPlayer()
@@ -40,7 +42,8 @@ public class PlayerController : NetworkBehaviour {
 
     void MoveWeapon(GameObject original, GameObject target) {
         var origWeapon = original.GetComponentInChildren<Weapon>();
-        CopyComponent<Weapon>(origWeapon, target);
+        var newWeapon = CopyComponent<Weapon>(origWeapon, target);
+        newWeapon.weaponGObject = original;
         Destroy(origWeapon);
     }
 

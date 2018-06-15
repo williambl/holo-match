@@ -26,6 +26,9 @@ public class Weapon : NetworkBehaviour {
     [System.NonSerialized]
     public float reloadTime;
 
+    [System.NonSerialized]
+    public GameObject weaponGObject;
+
     void Start () {}
 
     void Update () {}

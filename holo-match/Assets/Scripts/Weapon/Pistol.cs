@@ -27,11 +27,11 @@ public class Pistol : Weapon {
     PlayerController pc;
 
     new void Start () {
-        pc = transform.parent.parent.parent.GetComponent<PlayerController>();
+        pc = GetComponent<PlayerController>();
     }
 
     new void Update () {
-        if (!pc.isLocalPlayer)
+        if (!isLocalPlayer || !weaponGObject.activeInHierarchy)
             return;
 
         if (Input.GetButtonDown("Fire1")) {
@@ -58,18 +58,24 @@ public class Pistol : Weapon {
     }
 
     public new void Fire () {
-        Debug.Log("Firing");
-        //Create a new bullet GameObject
-        GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.parent.parent.rotation);
-        //Give it a push
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 18;
-        //Spawn it on the network
-        NetworkServer.Spawn(bullet);
+        CmdInstantiateAndAccelerate();
         ammo--;
         nextFireTime = Time.time + fireCooldown; 
     }
 
     public new void Reload () {
         ammo = maxAmmo;
+    }
+
+    [Command]
+    public void CmdInstantiateAndAccelerate () {
+        Debug.Log("FIRING");
+
+        //Create a new bullet GameObject
+        GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+        //Give it a push
+        bullet.GetComponent<Rigidbody>().velocity = transform.forward * 18;
+        //Spawn it on the network
+        NetworkServer.Spawn(bullet);
     }
 }
