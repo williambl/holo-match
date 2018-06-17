@@ -51,6 +51,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4820365094844694}
+  - component: {fileID: 114100100214917996}
   m_Layer: 0
   m_Name: assault_rifle
   m_TagString: Untagged
@@ -120,8 +121,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1607169217332050}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.542, y: 0.505, z: 0.313}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4648354664399620}
@@ -139,9 +140,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 4d049a8ed8ca24aec850f0ca0d65f402, type: 2}
   m_StaticBatchInfo:
@@ -154,6 +157,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -171,9 +175,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 4d049a8ed8ca24aec850f0ca0d65f402, type: 2}
   m_StaticBatchInfo:
@@ -186,6 +192,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -208,3 +215,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1284134333604916}
   m_Mesh: {fileID: 4300002, guid: c7114b337cda74f0d9a9a67e48d512b6, type: 3}
+--- !u!114 &114100100214917996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1607169217332050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93bf5a6d185564344837c666a4bd3f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoType: 2
+  type: 5
+  fireType: 2
+  ammo: 30
+  maxAmmo: 30
+  infiniteAmmo: 0
+  fireCooldown: 0.1
+  reloadTime: 5
+  bulletPrefab: {fileID: 1208532469328258, guid: 0c77ce4d813b74aee8e6cce19fab926d,
+    type: 2}
+  bulletSpawn: {fileID: 4056537377843550}
