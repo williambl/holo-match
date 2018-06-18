@@ -26,6 +26,8 @@ public class AssaultRifle : Weapon {
     public Transform bulletSpawn;
     PlayerController pc;
 
+    float bulletSpeed = 200;
+
     new void Start () {
         pc = GetComponent<PlayerController>();
     }
@@ -75,7 +77,7 @@ public class AssaultRifle : Weapon {
         //Create a new bullet GameObject
         GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
         //Give it a push
-        bullet.GetComponent<Rigidbody>().velocity = transform.forward * 18;
+        bullet.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
         //Spawn it on the network
         NetworkServer.Spawn(bullet);
     }
