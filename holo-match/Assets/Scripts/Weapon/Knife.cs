@@ -26,6 +26,7 @@ public class Knife : Weapon {
     Camera cam;
 
     float range = 1f;
+    Vector3 offset = new Vector3(0, 0, 0.7f);
 
     new void Start () {
         pc = GetComponent<PlayerController>();
@@ -62,12 +63,16 @@ public class Knife : Weapon {
     public void CmdAttack () {
         Debug.Log("FIRING");
 
-        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        Ray ray = new Ray(cam.transform.position+offset, cam.transform.forward);
         RaycastHit hit;
+        Debug.DrawLine(cam.transform.position+offset, cam.transform.position+offset+(cam.transform.forward*range), Color.red);
         if(Physics.Raycast(ray, out hit, range)) {
+            Debug.Log("Hit");
             PlayerController pcHit = hit.transform.GetComponent<PlayerController>();
-            if (pcHit != null)
+            if (pcHit != null) {
+                Debug.Log("Taking Damage");
                 pcHit.TakeDamage(10);
+            }
         }
     }
 }
