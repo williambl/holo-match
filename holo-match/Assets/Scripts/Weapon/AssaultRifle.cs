@@ -26,7 +26,7 @@ public class AssaultRifle : Weapon {
     public Transform bulletSpawn;
     PlayerController pc;
 
-    float bulletSpeed = 200;
+    float bulletSpeed = 700;
 
     new void Start () {
         pc = GetComponent<PlayerController>();
