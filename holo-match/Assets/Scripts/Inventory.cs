@@ -15,7 +15,6 @@ public class Inventory : NetworkBehaviour {
     public GameObject weapon2;
 
     void Start () {
-        Debug.Log("starting");
         EquipWeapon();
     }
 

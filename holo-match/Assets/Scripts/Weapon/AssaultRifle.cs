@@ -42,7 +42,6 @@ public class AssaultRifle : Weapon {
             if (ammo <= 0 && !infiniteAmmo) {
  
                 nextFireTime = Time.time + reloadTime;
-                Debug.Log("Time after reload: " + nextFireTime);
  
                 Reload();
                 return;
@@ -61,7 +60,6 @@ public class AssaultRifle : Weapon {
     }
 
     public new void Fire () {
-        Debug.Log("firing?");
         CmdInstantiateAndAccelerate();
         ammo--;
         nextFireTime = Time.time + fireCooldown; 
@@ -73,8 +71,6 @@ public class AssaultRifle : Weapon {
 
     [Command]
     public void CmdInstantiateAndAccelerate () {
-        Debug.Log("FIRING");
-
         //Create a new bullet GameObject
         GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
         //Work out the direction to shoot it in

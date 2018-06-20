@@ -35,7 +35,6 @@ public class PlayerController : NetworkBehaviour {
 
     public override void OnStartLocalPlayer()
     {
-        Debug.Log("initialising");
         cam.enabled = true;
         canvas.enabled = true;
         GetComponent<Renderer>().material.color = Color.blue;

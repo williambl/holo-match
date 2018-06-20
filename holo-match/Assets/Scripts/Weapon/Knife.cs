@@ -62,18 +62,13 @@ public class Knife : Weapon {
 
     [Command]
     public void CmdAttack () {
-        Debug.Log("FIRING");
-
         Ray ray = new Ray(cam.transform.position+offset, cam.transform.forward);
         RaycastHit hit;
         Debug.DrawLine(cam.transform.position+offset, cam.transform.position+offset+(cam.transform.forward*range), Color.red);
         if(Physics.Raycast(ray, out hit, range)) {
-            Debug.Log("Hit");
             PlayerController pcHit = hit.transform.GetComponent<PlayerController>();
-            if (pcHit != null) {
-                Debug.Log("Taking Damage");
+            if (pcHit != null)
                 pcHit.TakeDamage(10);
-            }
         }
     }
 }
