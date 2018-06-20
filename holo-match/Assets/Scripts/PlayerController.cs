@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
 
-    private Camera cam;
+    public Camera cam;
     private Canvas canvas;
     public NetworkStartPosition[] spawnPoints;
 

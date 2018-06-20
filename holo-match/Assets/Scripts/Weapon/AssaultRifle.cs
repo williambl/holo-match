@@ -76,8 +76,16 @@ public class AssaultRifle : Weapon {
 
         //Create a new bullet GameObject
         GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+        //Work out the direction to shoot it in
+        Ray ray = new Ray(pc.cam.transform.position+pc.cam.transform.forward, pc.cam.transform.forward);
+        RaycastHit hit;
+        Vector3 direction;
+        if (Physics.Raycast(ray, out hit, 100))
+            direction = (hit.point-bulletSpawn.position).normalized;
+        else
+            direction = ((pc.cam.transform.position+pc.cam.transform.forward*100)-bulletSpawn.position).normalized;
         //Give it a push
-        bullet.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+        bullet.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
         //Spawn it on the network
         NetworkServer.Spawn(bullet);
     }
