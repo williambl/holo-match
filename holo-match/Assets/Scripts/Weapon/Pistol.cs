@@ -54,6 +54,7 @@ public class Pistol : Weapon {
 
             Fire();
         }
+        pc.ammoText.text = ammo+"/"+maxAmmo;
     }
 
     public new void End () {

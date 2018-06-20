@@ -45,6 +45,7 @@ public class Knife : Weapon {
 
             Fire();
         }
+        pc.ammoText.text = "-";
     }
 
     public new void End () {

@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour {
 
     public Camera cam;
+    public Text ammoText;
     private Canvas canvas;
     public NetworkStartPosition[] spawnPoints;
 
@@ -23,6 +24,7 @@ public class PlayerController : NetworkBehaviour {
         canvas = GetComponentInChildren<Canvas>();
         health = GetComponent<Health>();
         inventory = GetComponent<Inventory>();
+        ammoText = transform.Find("Canvas/ammoText").GetComponent<Text>();
 
         cam.enabled = false;
         canvas.enabled = false;
