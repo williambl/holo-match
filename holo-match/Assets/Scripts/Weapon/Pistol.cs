@@ -26,7 +26,7 @@ public class Pistol : Weapon {
     public Transform bulletSpawn;
     PlayerController pc;
 
-    float bulletSpeed = 400;
+    float bulletSpeed = 100;
 
     new void Start () {
         pc = GetComponent<PlayerController>();
