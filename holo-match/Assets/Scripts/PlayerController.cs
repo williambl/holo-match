@@ -6,7 +6,8 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour {
 
-    private Camera cam;
+    public Camera cam;
+    public Text ammoText;
     private Canvas canvas;
     public NetworkStartPosition[] spawnPoints;
 
@@ -15,14 +16,21 @@ public class PlayerController : NetworkBehaviour {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
 
+    public Inventory inventory;
+
     // Use this for initialization
     void Awake () {
 	cam = GetComponentInChildren<Camera>();
         canvas = GetComponentInChildren<Canvas>();
         health = GetComponent<Health>();
+        inventory = GetComponent<Inventory>();
+        ammoText = transform.Find("Canvas/ammoText").GetComponent<Text>();
 
         cam.enabled = false;
         canvas.enabled = false;
+        MoveWeapon(inventory.weapon0, gameObject);
+        MoveWeapon(inventory.weapon1, gameObject);
+        MoveWeapon(inventory.weapon2, gameObject);
     }
 
     public override void OnStartLocalPlayer()
@@ -30,15 +38,33 @@ public class PlayerController : NetworkBehaviour {
         cam.enabled = true;
         canvas.enabled = true;
         GetComponent<Renderer>().material.color = Color.blue;
-        spawnPoints = FindObjectsOfType<NetworkStartPosition>();               
+        spawnPoints = FindObjectsOfType<NetworkStartPosition>();
     }
+
+    void MoveWeapon(GameObject original, GameObject target) {
+        var origWeapon = original.GetComponentInChildren<Weapon>();
+        var newWeapon = CopyComponent<Weapon>(origWeapon, target);
+        newWeapon.weaponGObject = original;
+        Destroy(origWeapon);
+    }
+
+    //From http://answers.unity.com/answers/589400/view.html
+    T CopyComponent<T>(T original, GameObject destination) where T : Component {
+        System.Type type = original.GetType();
+        Component copy = destination.AddComponent(type);
+        System.Reflection.FieldInfo[] fields = type.GetFields();
+        foreach (System.Reflection.FieldInfo field in fields)
+        {
+            field.SetValue(copy, field.GetValue(original));
+        }
+        return copy as T;
+    }
+
 	
     // Update is called once per frame
     void Update () {
         if (!isLocalPlayer)
             return;
-        if (Input.GetButtonDown("Fire1"))
-            CmdFire();
     }
 
     public void TakeDamage(int amount) {
@@ -81,12 +107,4 @@ public class PlayerController : NetworkBehaviour {
         return true;
     }
 
-    [Command]
-    private void CmdFire() {
-        GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 6;
-        NetworkServer.Spawn(bullet);
-
-        Destroy(bullet, 2.0f);
-    }
 }

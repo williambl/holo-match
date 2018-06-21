@@ -1,0 +1,13 @@
+public enum EnumWeaponType {
+    MELEE,
+    GRENADE,
+    PISTOL,
+    SHOTGUN,
+    SUBMACHINE_GUN,
+    ASSAULT_RIFLE,
+    SNIPER_RIFLE,
+    GRENADE_LAUNCHER,
+    RPG,
+    FLAMETHROWER,
+    ENERGY_GUN
+}
