@@ -25,10 +25,17 @@ public class Inventory : NetworkBehaviour {
         int previousEquippedWeapon = equippedWeapon;
 
         //Change weapon by scrolling
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
             equippedWeapon++;
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0)
             equippedWeapon--;
+
+        if (Input.GetButtonDown("Weapon 0"))
+            equippedWeapon = 0;
+        if (Input.GetButtonDown("Weapon 1"))
+            equippedWeapon = 1;
+        if (Input.GetButtonDown("Weapon 2"))
+            equippedWeapon = 2;
 
         //Wraps the equipped weapon around
         equippedWeapon = (equippedWeapon + weaponCount) % weaponCount;
