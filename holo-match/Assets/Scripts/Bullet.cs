@@ -5,16 +5,16 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
     Rigidbody rigid;
-    Vector3 offset = new Vector3(0, 0, 0.021f); //Needed so that the raycast will not just hit the bullet itself
+    float offset = 0.021f; //Needed so that the raycast will not just hit the bullet itself
 
     void Start () {
         rigid = GetComponent<Rigidbody>();
     }
     void FixedUpdate () {
         //Allows us to move fast while still hitting things
-        Ray ray = new Ray(transform.position+offset, transform.forward);
+        Ray ray = new Ray(transform.position+transform.forward*offset, transform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(transform.position+offset, transform.forward, out hit, rigid.velocity.magnitude*Time.fixedDeltaTime))
+        if (Physics.Raycast(ray, out hit, rigid.velocity.magnitude*Time.fixedDeltaTime))
             HitObject(hit.collider.gameObject);
     }
 	
