@@ -34,7 +34,7 @@ public class Knife : Weapon {
     }
 
     new void Update () {
-        if (!isLocalPlayer || !weaponGObject.activeInHierarchy)
+        if (!isLocalPlayer || !weaponGObject.activeInHierarchy || pc.pauseController.isPaused)
             return;
 
         if (Input.GetButtonDown("Fire1")) {

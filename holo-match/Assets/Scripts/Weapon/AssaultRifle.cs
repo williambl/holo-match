@@ -33,7 +33,7 @@ public class AssaultRifle : Weapon {
     }
 
     new void Update () {
-        if (!isLocalPlayer || !weaponGObject.activeInHierarchy)
+        if (!isLocalPlayer || !weaponGObject.activeInHierarchy || pc.pauseController.isPaused)
             return;
 
         if (Input.GetButton("Fire1")) {

@@ -42,6 +42,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private PauseController m_PauseController;
 
         // Use this for initialization
         public override void OnStartLocalPlayer()
@@ -55,6 +56,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_NextStep = m_StepCycle/2f;
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
+            m_PauseController = GetComponent<PauseController>();
 			m_MouseLook.Init(transform , m_Camera.transform);
         }
 
@@ -100,6 +102,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             if (!isLocalPlayer)
                 return;
+
+            if (m_PauseController.isPaused) {
+                m_MouseLook.SetCursorLock(false);
+                return;
+            } else {
+                m_MouseLook.SetCursorLock(true);
+            }
             float speed;
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at

@@ -17,6 +17,7 @@ public class PlayerController : NetworkBehaviour {
     public Transform bulletSpawn;
 
     public Inventory inventory;
+    public PauseController pauseController;
 
     // Use this for initialization
     void Awake () {
@@ -24,6 +25,7 @@ public class PlayerController : NetworkBehaviour {
         canvas = GetComponentInChildren<Canvas>();
         health = GetComponent<Health>();
         inventory = GetComponent<Inventory>();
+        pauseController = GetComponent<PauseController>();
         ammoText = transform.Find("Canvas/ammoText").GetComponent<Text>();
 
         cam.enabled = false;

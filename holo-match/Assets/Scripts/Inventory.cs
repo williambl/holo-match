@@ -4,6 +4,8 @@ using UnityEngine.Networking;
 
 public class Inventory : NetworkBehaviour {
     
+    private PauseController pauseController;
+
     [SyncVar]
     public int equippedWeapon = 0;
 
@@ -16,10 +18,11 @@ public class Inventory : NetworkBehaviour {
 
     void Start () {
         EquipWeapon();
+        pauseController = GetComponent<PauseController>();
     }
 
     void Update () {
-        if (!isLocalPlayer)
+        if (!isLocalPlayer || pauseController.isPaused)
             return;
 
         int previousEquippedWeapon = equippedWeapon;
