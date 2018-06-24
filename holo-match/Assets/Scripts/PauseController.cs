@@ -39,6 +39,9 @@ public class PauseController : NetworkBehaviour {
     }
 
     void Exit () {
-        NetworkManager.singleton.StopClient();
+        if (isServer)
+            NetworkManager.singleton.StopHost();
+        else
+            NetworkManager.singleton.StopClient();
     }
 }
