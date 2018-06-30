@@ -30,9 +30,10 @@ public class PlayerController : NetworkBehaviour {
 
         cam.enabled = false;
         canvas.enabled = false;
-        MoveWeapon(inventory.weapon0, gameObject);
-        MoveWeapon(inventory.weapon1, gameObject);
-        MoveWeapon(inventory.weapon2, gameObject);
+        
+        foreach (GameObject weapon in inventory.weapons) {
+            MoveWeapon(weapon, gameObject);
+        }
     }
 
     public override void OnStartLocalPlayer()

@@ -1773,9 +1773,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equippedWeapon: 0
   weaponCount: 3
-  weapon0: {fileID: 1765800825323328}
-  weapon1: {fileID: 1552473373911030}
-  weapon2: {fileID: 1136965049518604}
+  weapons:
+  - {fileID: 1765800825323328}
+  - {fileID: 1552473373911030}
+  - {fileID: 1136965049518604}
 --- !u!124 &124545529564085164
 Behaviour:
   m_ObjectHideFlags: 1
