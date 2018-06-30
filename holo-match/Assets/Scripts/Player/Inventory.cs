@@ -17,6 +17,29 @@ public class Inventory : NetworkBehaviour {
     void Start () {
         EquipWeapon();
         pauseController = GetComponent<PauseController>();
+
+        foreach (GameObject weapon in weapons) {
+            MoveWeapon(weapon, gameObject);
+        }
+    }
+
+    void MoveWeapon(GameObject original, GameObject target) {
+        var origWeapon = original.GetComponentInChildren<Weapon>();
+        var newWeapon = CopyComponent<Weapon>(origWeapon, target);
+        newWeapon.weaponGObject = original;
+        Destroy(origWeapon);
+    }
+
+    //From http://answers.unity.com/answers/589400/view.html
+    T CopyComponent<T>(T original, GameObject destination) where T : Component {
+        System.Type type = original.GetType();
+        Component copy = destination.AddComponent(type);
+        System.Reflection.FieldInfo[] fields = type.GetFields();
+        foreach (System.Reflection.FieldInfo field in fields)
+        {
+            field.SetValue(copy, field.GetValue(original));
+        }
+        return copy as T;
     }
 
     void Update () {
