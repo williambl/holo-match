@@ -12,13 +12,42 @@ public class Inventory : NetworkBehaviour {
     [SyncVar]
     public int weaponCount = 3;
 
-    public GameObject weapon0;
-    public GameObject weapon1;
-    public GameObject weapon2;
+    public GameObject[] weapons = new GameObject[3];
 
     void Start () {
         EquipWeapon();
         pauseController = GetComponent<PauseController>();
+
+        GameObject[] registry = WeaponManager.weaponManager.weaponRegistry.ToArray();
+        int[] selectedWeapons = WeaponManager.weaponManager.selectedWeapons;
+        for (int i = 0; i < selectedWeapons.Length; i++) {
+            GameObject weapon = Instantiate(registry[selectedWeapons[i]]);
+            weapon.transform.SetParent(weapons[i].transform, false);
+            NetworkServer.Spawn(weapon);
+        }
+
+        foreach (GameObject weapon in weapons) {
+            MoveWeapon(weapon, gameObject);
+        }
+    }
+
+    void MoveWeapon(GameObject original, GameObject target) {
+        var origWeapon = original.GetComponentInChildren<Weapon>();
+        var newWeapon = CopyComponent<Weapon>(origWeapon, target);
+        newWeapon.weaponGObject = original;
+        Destroy(origWeapon);
+    }
+
+    //From http://answers.unity.com/answers/589400/view.html
+    T CopyComponent<T>(T original, GameObject destination) where T : Component {
+        System.Type type = original.GetType();
+        Component copy = destination.AddComponent(type);
+        System.Reflection.FieldInfo[] fields = type.GetFields();
+        foreach (System.Reflection.FieldInfo field in fields)
+        {
+            field.SetValue(copy, field.GetValue(original));
+        }
+        return copy as T;
     }
 
     void Update () {
@@ -49,34 +78,8 @@ public class Inventory : NetworkBehaviour {
     }
 
     void EquipWeapon () {
-        switch (equippedWeapon) {
-            case 0:
-                weapon0.SetActive(true);
-                weapon1.SetActive(false);
-                weapon2.SetActive(false);
-                break;
-            case 1:
-                weapon0.SetActive(false);
-                weapon1.SetActive(true);
-                weapon2.SetActive(false);
-                break;
-            case 2:
-                weapon0.SetActive(false);
-                weapon1.SetActive(false);
-                weapon2.SetActive(true);
-                break;
-            default:
-                /*
-                 * If we ever have an equipped weapon outside of the range
-                 * 0..2, then something has gone terribly wrong...
-                 */
-
-                Debug.unityLogger.Log(LogType.Error,
-                        "You have an equipped weapon outside of the range 0..2! Something has gone terribly wrong...");
-                weapon0.SetActive(true);
-                weapon1.SetActive(false);
-                weapon2.SetActive(false);
-                break;
+        for (int i = 0; i < weapons.Length; i++) {
+            weapons[i].SetActive(i == equippedWeapon);
         }
     }
 }
