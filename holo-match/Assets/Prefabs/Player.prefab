@@ -1237,7 +1237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equippedWeapon: 0
   weaponCount: 3
-  weaponRegistryItems: 000000000100000002000000
+  weaponRegistryItems: 030000000100000002000000
   weapons:
   - {fileID: 1765800825323328}
   - {fileID: 1552473373911030}

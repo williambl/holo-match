@@ -11,10 +11,17 @@ public class MainMenuController : MonoBehaviour {
     public Button exit;
     public InputField joinIP;
 
+    public Dropdown[] weaponDropdowns = new Dropdown[3];
+
     void Start () {
         host.onClick.AddListener(Host);
         join.onClick.AddListener(Join);
         exit.onClick.AddListener(Exit);
+
+        List<string> weaponNames = WeaponManager.weaponManager.weaponNames;
+        foreach (Dropdown dropdown in weaponDropdowns) {
+            dropdown.AddOptions(weaponNames);
+        }
     }
 	
     void Host () {
