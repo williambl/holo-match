@@ -23,6 +23,8 @@ public class Bullet : MonoBehaviour {
     }
 
     void HitObject (GameObject objectHit) {
+        if (objectHit.tag == "Bullet")
+            return;
         PlayerController pc = objectHit.GetComponent<PlayerController>();
         if (pc != null)
             pc.TakeDamage(10);
