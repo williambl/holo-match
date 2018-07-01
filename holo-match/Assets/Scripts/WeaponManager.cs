@@ -6,6 +6,8 @@ public class WeaponManager : MonoBehaviour {
     public List<GameObject> weaponRegistry;
     public List<string> weaponNames;
 
+    public int[] selectedWeapons = new int[3];
+
     public static WeaponManager weaponManager;
 
     void Awake () {

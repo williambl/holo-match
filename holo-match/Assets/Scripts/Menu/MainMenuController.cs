@@ -25,15 +25,25 @@ public class MainMenuController : MonoBehaviour {
     }
 	
     void Host () {
+        ChooseWeapons();
         NetworkManager.singleton.StartHost();
     }
 
     void Join () {
+        ChooseWeapons();
         NetworkManager.singleton.networkAddress = joinIP.text == "" ? "localhost" : joinIP.text;
         NetworkManager.singleton.StartClient();
     }
 
     void Exit () {
         Application.Quit();
+    }
+
+    void ChooseWeapons () {
+        WeaponManager wm = WeaponManager.weaponManager;
+
+        for (int i = 0; i < wm.selectedWeapons.Length; i++) {
+            wm.selectedWeapons[i] = weaponDropdowns[i].value;
+        }
     }
 }
