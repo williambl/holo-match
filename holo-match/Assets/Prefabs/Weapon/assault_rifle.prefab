@@ -52,6 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4820365094844694}
   - component: {fileID: 114100100214917996}
+  - component: {fileID: 114333439740494514}
   m_Layer: 0
   m_Name: assault_rifle
   m_TagString: Untagged
@@ -237,3 +238,35 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1208532469328258, guid: 0c77ce4d813b74aee8e6cce19fab926d,
     type: 2}
   bulletSpawn: {fileID: 4056537377843550}
+--- !u!114 &114333439740494514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1607169217332050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 55
+    i1: 100
+    i2: 103
+    i3: 22
+    i4: 81
+    i5: 49
+    i6: 4
+    i7: 135
+    i8: 137
+    i9: 216
+    i10: 175
+    i11: 112
+    i12: 140
+    i13: 191
+    i14: 48
+    i15: 7
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4782038448174868}
   - component: {fileID: 114397695880257362}
+  - component: {fileID: 114343173780025170}
   m_Layer: 0
   m_Name: knife
   m_TagString: Untagged
@@ -113,6 +114,38 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1345719704632650}
   m_Mesh: {fileID: 4300000, guid: cb11d63e5c162419491ded38dd5fadd5, type: 3}
+--- !u!114 &114343173780025170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1324472293988994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 240
+    i1: 212
+    i2: 243
+    i3: 15
+    i4: 185
+    i5: 220
+    i6: 180
+    i7: 83
+    i8: 26
+    i9: 191
+    i10: 230
+    i11: 131
+    i12: 247
+    i13: 176
+    i14: 42
+    i15: 233
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114397695880257362
 MonoBehaviour:
   m_ObjectHideFlags: 1
