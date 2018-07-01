@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 
     Rigidbody rigid;
     float offset = 0.021f; //Needed so that the raycast will not just hit the bullet itself
+    PlayerController playerFired;
 
     void Start () {
         rigid = GetComponent<Rigidbody>();
@@ -26,8 +27,11 @@ public class Bullet : MonoBehaviour {
         if (objectHit.tag == "Bullet")
             return;
         PlayerController pc = objectHit.GetComponent<PlayerController>();
-        if (pc != null)
+        if (pc != null) {
+            if (pc == playerFired)
+               return; 
             pc.TakeDamage(10);
+        }
 
 	Destroy(gameObject);
     }
