@@ -73,16 +73,20 @@ public class Pistol : Weapon {
     public void CmdInstantiateAndAccelerate () {
         //Create a new bullet GameObject
         GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+
         //Work out the direction to shoot it in
         Ray ray = new Ray(pc.cam.transform.position+pc.cam.transform.forward, pc.cam.transform.forward);
         RaycastHit hit;
         Vector3 direction;
-        if (Physics.Raycast(ray, out hit, 100))
-            direction = (hit.point-bulletSpawn.position).normalized;
-        else
-            direction = ((pc.cam.transform.position+pc.cam.transform.forward*100)-bulletSpawn.position).normalized;
+
+        Vector3 aimPoint = Physics.Raycast(ray, out hit, 100) ? hit.point : pc.cam.transform.position+pc.cam.transform.forward*100;
+        direction = ((aimPoint+Random.insideUnitSphere*20)-bulletSpawn.position).normalized;
+
+        bullet.transform.LookAt(direction);
+
         //Give it a push
         bullet.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
+
         //Spawn it on the network
         NetworkServer.Spawn(bullet);
     }
