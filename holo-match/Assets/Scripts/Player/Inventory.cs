@@ -12,11 +12,20 @@ public class Inventory : NetworkBehaviour {
     [SyncVar]
     public int weaponCount = 3;
 
+    public int[] weaponRegistryItems = new int[3];
+
     public GameObject[] weapons = new GameObject[3];
 
     void Start () {
         EquipWeapon();
         pauseController = GetComponent<PauseController>();
+
+        GameObject[] registry = WeaponManager.weaponManager.weaponRegistry.ToArray();
+        for (int i = 0; i < weaponRegistryItems.Length; i++) {
+            GameObject weapon = Instantiate(registry[weaponRegistryItems[i]]);
+            weapon.transform.SetParent(weapons[i].transform, false);
+            NetworkServer.Spawn(weapon);
+        }
 
         foreach (GameObject weapon in weapons) {
             MoveWeapon(weapon, gameObject);
