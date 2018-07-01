@@ -2865,6 +2865,7 @@ MonoBehaviour:
   - {fileID: 1324472293988994, guid: f0d4f30fb9dcb4531abfe683f7b02ae9, type: 2}
   - {fileID: 1967123485818010, guid: 102c75cb7ed964631b9f87268f5aa81d, type: 2}
   weaponNames: []
+  selectedWeapons: 000000000000000000000000
 --- !u!114 &1246632186
 MonoBehaviour:
   m_ObjectHideFlags: 0

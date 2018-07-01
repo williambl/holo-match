@@ -75,6 +75,7 @@ public class Shotgun : Weapon {
         for (int i = 0; i < 8; i++) {
             //Create a new bullet GameObject
             GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+            bullet.GetComponent<Bullet>().playerFired = pc;
 
             //Work out the direction to shoot it in
             Ray ray = new Ray(pc.cam.transform.position+pc.cam.transform.forward, pc.cam.transform.forward);

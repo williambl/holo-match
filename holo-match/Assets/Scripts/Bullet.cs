@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
+    public PlayerController playerFired;
+
     Rigidbody rigid;
     float offset = 0.021f; //Needed so that the raycast will not just hit the bullet itself
-    PlayerController playerFired;
 
     void Start () {
         rigid = GetComponent<Rigidbody>();
