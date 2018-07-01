@@ -80,7 +80,7 @@ public class Pistol : Weapon {
         Vector3 direction;
 
         Vector3 aimPoint = Physics.Raycast(ray, out hit, 100) ? hit.point : pc.cam.transform.position+pc.cam.transform.forward*100;
-        direction = ((aimPoint+Random.insideUnitSphere*20)-bulletSpawn.position).normalized;
+        direction = (aimPoint-bulletSpawn.position).normalized;
 
         bullet.transform.LookAt(direction);
 
