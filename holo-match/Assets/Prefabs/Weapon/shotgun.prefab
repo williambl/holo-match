@@ -162,7 +162,7 @@ MonoBehaviour:
   infiniteAmmo: 0
   fireCooldown: 1
   reloadTime: 3
-  bulletPrefab: {fileID: 1208532469328258, guid: 0c77ce4d813b74aee8e6cce19fab926d,
+  bulletPrefab: {fileID: 1026202551577762, guid: 1c45aa953efbc405ba458e476bf767f0,
     type: 2}
   bulletSpawn: {fileID: 4525666187645838}
 --- !u!114 &114750257976775802
