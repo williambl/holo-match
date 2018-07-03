@@ -29,6 +29,9 @@ public class Weapon : NetworkBehaviour {
     [System.NonSerialized]
     public GameObject weaponGObject;
 
+    [System.NonSerialized]
+    public int damage;
+
     void Start () {}
 
     void Update () {}

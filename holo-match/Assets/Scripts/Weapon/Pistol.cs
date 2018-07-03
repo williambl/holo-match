@@ -22,6 +22,9 @@ public class Pistol : Weapon {
     [HideInInspector]
     public new float reloadTime = 3f;
 
+    [HideInInspector]
+    public new int damage = 15;
+
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     PlayerController pc;
@@ -73,7 +76,9 @@ public class Pistol : Weapon {
     public void CmdInstantiateAndAccelerate () {
         //Create a new bullet GameObject
         GameObject bullet = (GameObject)Object.Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
-        bullet.GetComponent<Bullet>().playerFired = pc;
+        Bullet bulletComponent = bullet.GetComponent<Bullet>();
+        bulletComponent.playerFired = pc;
+        bulletComponent.damage = damage;
 
         //Work out the direction to shoot it in
         Ray ray = new Ray(pc.cam.transform.position+pc.cam.transform.forward, pc.cam.transform.forward);

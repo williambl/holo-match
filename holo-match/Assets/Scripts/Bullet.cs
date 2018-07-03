@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour {
 
     Rigidbody rigid;
     float offset = 0.021f; //Needed so that the raycast will not just hit the bullet itself
+    public int damage = 10;
 
     void Start () {
         rigid = GetComponent<Rigidbody>();
@@ -31,7 +32,7 @@ public class Bullet : MonoBehaviour {
         if (pc != null) {
             if (pc == playerFired)
                return; 
-            pc.TakeDamage(10);
+            pc.TakeDamage(damage);
         }
 
 	Destroy(gameObject);
