@@ -22,12 +22,11 @@ GameObject:
   - component: {fileID: 33445075864896240}
   - component: {fileID: 135054197204540532}
   - component: {fileID: 23872636494251478}
-  - component: {fileID: 96366216284806996}
   - component: {fileID: 54856479865741936}
   - component: {fileID: 114931675437252512}
   - component: {fileID: 114625347867802954}
   - component: {fileID: 114627357914560282}
-  - component: {fileID: 122629705754704792}
+  - component: {fileID: 96056191375713236}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -105,7 +104,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!96 &96366216284806996
+--- !u!96 &96056191375713236
 TrailRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 1
@@ -120,7 +119,8 @@ TrailRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
-  m_Materials: []
+  m_Materials:
+  - {fileID: 2100000, guid: e12519852b02b49f4a14e47a47f34b66, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,16 +140,16 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 0.01
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.02
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.09375
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -189,12 +189,12 @@ TrailRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 12
     alignment: 0
     textureMode: 0
     generateLightingData: 0
   m_MinVertexDistance: 0.1
-  m_Autodestruct: 1
+  m_Autodestruct: 0
   m_Emitting: 1
 --- !u!114 &114625347867802954
 MonoBehaviour:
@@ -228,6 +228,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc3b65e6dace43c9bfd312659664199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerFired: {fileID: 0}
+  damage: 10
 --- !u!114 &114931675437252512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -260,17 +262,6 @@ MonoBehaviour:
     i15: 109
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!122 &122629705754704792
-Halo:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1208532469328258}
-  m_Enabled: 1
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_Size: 0.1
 --- !u!135 &135054197204540532
 SphereCollider:
   m_ObjectHideFlags: 1
