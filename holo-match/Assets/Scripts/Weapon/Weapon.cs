@@ -5,6 +5,12 @@ using System;
 public class Weapon : NetworkBehaviour {
 
     [System.NonSerialized]
+    public string name;
+
+    [System.NonSerialized]
+    public EnumSlot slot;
+
+    [System.NonSerialized]
     public EnumAmmoType ammoType;
     [System.NonSerialized]
     public EnumWeaponType type;

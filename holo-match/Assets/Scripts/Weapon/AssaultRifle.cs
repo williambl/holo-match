@@ -4,6 +4,12 @@ using UnityEngine.Networking;
 public class AssaultRifle : Weapon {
 
     [HideInInspector]
+    public new string name = "Assault Rifle";
+
+    [HideInInspector]
+    public new EnumSlot slot = EnumSlot.PRIMARY;
+
+    [HideInInspector]
     public new EnumAmmoType ammoType = EnumAmmoType.MEDIUM;
     [HideInInspector]
     public new EnumWeaponType type = EnumWeaponType.ASSAULT_RIFLE;

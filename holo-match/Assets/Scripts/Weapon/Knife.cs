@@ -4,6 +4,12 @@ using UnityEngine.Networking;
 public class Knife : Weapon {
 
     [HideInInspector]
+    public new string name = "Knife";
+
+    [HideInInspector]
+    public new EnumSlot slot = EnumSlot.SPECIAL;
+
+    [HideInInspector]
     public new EnumAmmoType ammoType = EnumAmmoType.NONE;
     [HideInInspector]
     public new EnumWeaponType type = EnumWeaponType.MELEE;
