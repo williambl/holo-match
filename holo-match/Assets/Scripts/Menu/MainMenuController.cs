@@ -17,10 +17,10 @@ public class MainMenuController : MonoBehaviour {
         host.onClick.AddListener(Host);
         join.onClick.AddListener(Join);
         exit.onClick.AddListener(Exit);
+        Debug.Log(WeaponManager.weaponManager.GetWeaponNamesFromSlot((EnumSlot)2));
 
-        List<string> weaponNames = WeaponManager.weaponManager.weaponNames;
-        foreach (Dropdown dropdown in weaponDropdowns) {
-            dropdown.AddOptions(weaponNames);
+        for (int i = 0; i < weaponDropdowns.Length; i++) {
+            weaponDropdowns[i].AddOptions(WeaponManager.weaponManager.GetWeaponNamesFromSlot((EnumSlot)i));
         }
     }
 	
