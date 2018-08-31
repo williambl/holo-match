@@ -18,11 +18,14 @@ public class Inventory : NetworkBehaviour {
         EquipWeapon();
         pauseController = GetComponent<PauseController>();
 
-        GameObject[] registry = WeaponManager.weaponManager.weaponRegistry.ToArray();
+        WeaponManager weaponManager = WeaponManager.weaponManager;
         int[] selectedWeapons = WeaponManager.weaponManager.selectedWeapons;
+
         for (int i = 0; i < selectedWeapons.Length; i++) {
-            GameObject weapon = Instantiate(registry[selectedWeapons[i]]);
+            GameObject weapon = Instantiate(weaponManager.GetWeaponFromRegistry((EnumSlot)i, selectedWeapons[i]));
+
             weapon.transform.SetParent(weapons[i].transform, false);
+
             NetworkServer.Spawn(weapon);
         }
 

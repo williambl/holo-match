@@ -41,6 +41,23 @@ public class WeaponManager : MonoBehaviour {
         }
     }
 
+    public GameObject GetWeaponFromRegistry(EnumSlot slot, int index) {
+        switch (slot) {
+            case EnumSlot.PRIMARY:
+                return primaryWeapons[index];
+                break;
+            case EnumSlot.SECONDARY:
+                return secondaryWeapons[index];
+                break;
+            case EnumSlot.SPECIAL:
+                return specialWeapons[index];
+                break;
+            default:
+                return primaryWeapons[index];
+                break;
+        }
+    }
+
     public List<GameObject> GetWeaponsFromSlot(EnumSlot slot) {
         switch (slot) {
             case EnumSlot.PRIMARY:
