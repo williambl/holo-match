@@ -22,25 +22,22 @@ public class WeaponManager : MonoBehaviour {
 
         foreach (GameObject weapon in weaponRegistry) {
             weaponNames.Add(weapon.name);
-            Debug.Log(weapon.GetComponent<Weapon>().name);
-            Debug.Log(weapon.GetComponent<Weapon>().slot);
+            dynamic weaponComponent = weapon.GetComponent<Weapon>();
 
-            switch (weapon.GetComponent<Weapon>().slot) {
-                case EnumSlot.PRIMARY:
+                if (weaponComponent.slot == EnumSlot.PRIMARY) {
                     primaryWeapons.Add(weapon);
                     primaryWeaponNames.Add(weapon.name);
-                    break;
+                }
 
-                case EnumSlot.SECONDARY:
+                if (weaponComponent.slot == EnumSlot.SECONDARY) {
                     secondaryWeapons.Add(weapon);
                     secondaryWeaponNames.Add(weapon.name);
-                    break;
+                }
 
-                case EnumSlot.SPECIAL:
+                if (weaponComponent.slot == EnumSlot.SPECIAL) {
                     specialWeapons.Add(weapon);
                     specialWeaponNames.Add(weapon.name);
-                    break;
-            }
+                }
         }
     }
 
