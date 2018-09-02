@@ -18,6 +18,7 @@ public class MapManager : NetworkBehaviour {
         mapManager = this;
 
         AddMaps();
+        currentMap = mapRegistry[0];
 
         foreach (Map map in mapRegistry) {
             mapNames.Add(map.name);
@@ -28,7 +29,7 @@ public class MapManager : NetworkBehaviour {
         if (!isServer)
             return;
 
-        if (Input.GetKeyDown("I")) {
+        if (Input.GetKeyDown("i")) {
             Debug.Log("Switching Map!");
             SwitchMap(mapRegistry[0]);
         }
@@ -43,12 +44,7 @@ public class MapManager : NetworkBehaviour {
             return;
 
         currentMap = map;
-        RpcSwitchToMap(map);
-    }
-
-    [ClientRpc]
-    public void RpcSwitchToMap(Map map) {
-        SceneManager.LoadSceneAsync(map.sceneName);
+        NetworkManager.singleton.ServerChangeScene(currentMap.sceneName);
     }
 
     public Map GetMapFromRegistry(int index) {
