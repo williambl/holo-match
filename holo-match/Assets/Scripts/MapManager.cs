@@ -22,16 +22,7 @@ public class MapManager : NetworkBehaviour {
 
         foreach (Map map in mapRegistry) {
             mapNames.Add(map.name);
-        }
-    }
-
-    void Update () {
-        if (!isServer)
-            return;
-
-        if (Input.GetKeyDown("i")) {
-            Debug.Log("Switching Map!");
-            SwitchMap(mapRegistry[0]);
+            Debug.Log(map.name);
         }
     }
 
