@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class WeaponManager : MonoBehaviour {
 
-    public List<GameObject> weaponRegistry;
-    public List<string> weaponNames;
+    private List<GameObject> weaponRegistry = new List<GameObject>();
+    private List<string> weaponNames = new List<string>();
 
     public int[] selectedWeapons = new int[3];
 
@@ -19,26 +19,33 @@ public class WeaponManager : MonoBehaviour {
 
     void Awake () {
         weaponManager = this;
+    }
 
-        foreach (GameObject weapon in weaponRegistry) {
-            weaponNames.Add(weapon.name);
-            dynamic weaponComponent = weapon.GetComponent<Weapon>();
+    public void AddWeaponToRegistry(GameObject weapon) {
+        weaponRegistry.Add(weapon);
+        weaponNames.Add(weapon.name);
 
-                if (weaponComponent.slot == EnumSlot.PRIMARY) {
-                    primaryWeapons.Add(weapon);
-                    primaryWeaponNames.Add(weapon.name);
-                }
+        dynamic weaponComponent = weapon.GetComponent<Weapon>();
 
-                if (weaponComponent.slot == EnumSlot.SECONDARY) {
-                    secondaryWeapons.Add(weapon);
-                    secondaryWeaponNames.Add(weapon.name);
-                }
-
-                if (weaponComponent.slot == EnumSlot.SPECIAL) {
-                    specialWeapons.Add(weapon);
-                    specialWeaponNames.Add(weapon.name);
-                }
+        if (weaponComponent.slot == EnumSlot.PRIMARY) {
+            primaryWeapons.Add(weapon);
+            primaryWeaponNames.Add(weapon.name);
         }
+
+        if (weaponComponent.slot == EnumSlot.SECONDARY) {
+            secondaryWeapons.Add(weapon);
+            secondaryWeaponNames.Add(weapon.name);
+        }
+
+        if (weaponComponent.slot == EnumSlot.SPECIAL) {
+            specialWeapons.Add(weapon);
+            specialWeaponNames.Add(weapon.name);
+        }
+
+    }
+
+    public List<GameObject> GetWeaponRegistry() {
+        return weaponRegistry;
     }
 
     public GameObject GetWeaponFromRegistry(EnumSlot slot, int index) {
