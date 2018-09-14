@@ -17,13 +17,7 @@ public class MapManager : NetworkBehaviour {
         DontDestroyOnLoad(gameObject);
         mapManager = this;
 
-        AddMaps();
         currentMap = mapRegistry[0];
-    }
-
-    private void AddMaps() {
-        AddMapToRegistry(new Map("testLevel", "testLevel"));
-        AddMapToRegistry(new Map("testLevel1", "testLevel1"));
     }
 
     public void AddMapToRegistry(Map map) {
