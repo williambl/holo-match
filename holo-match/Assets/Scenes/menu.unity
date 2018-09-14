@@ -2019,7 +2019,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6d198e60ebf4be19f41d33ec548e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapNames: []
 --- !u!114 &853410319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2915,6 +2914,7 @@ GameObject:
   - component: {fileID: 1246632187}
   - component: {fileID: 1246632186}
   - component: {fileID: 1246632185}
+  - component: {fileID: 1246632188}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2933,12 +2933,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7d75eb7e1c34d2685c268aac3d58b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRegistry:
-  - {fileID: 1607169217332050, guid: 376467165131048789d8af708cbf3007, type: 2}
-  - {fileID: 1637930434244014, guid: cc67ec36546214cab81689e64c38e7e5, type: 2}
-  - {fileID: 1324472293988994, guid: f0d4f30fb9dcb4531abfe683f7b02ae9, type: 2}
-  - {fileID: 1967123485818010, guid: 102c75cb7ed964631b9f87268f5aa81d, type: 2}
-  weaponNames: []
   selectedWeapons: 000000000000000000000000
 --- !u!114 &1246632186
 MonoBehaviour:
@@ -3036,6 +3030,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1246632188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1246632184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75d7b74f416c84073a928dcc7f32f596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1257092478
 GameObject:
   m_ObjectHideFlags: 0
