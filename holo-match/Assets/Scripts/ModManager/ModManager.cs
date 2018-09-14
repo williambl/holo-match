@@ -20,5 +20,21 @@ public class ModManager : MonoBehaviour {
                 }
             }
         }
+
+        RegisterMaps(modRegistry);
+        RegisterWeapons(modRegistry);
+    }
+
+
+    private void RegisterMaps (List<Type> registry) {
+        foreach (var mod in registry) {
+            mod.GetMethod("RegisterMaps").Invoke(null, MapManager.mapManager);
+        } 
+    }
+
+    private void RegisterWeapons (List<Type> registry) {
+        foreach (var mod in registry) {
+            mod.GetMethod("RegisterWeapons").Invoke(null, WeaponManager.weaponManager);
+        }
     }
 }
