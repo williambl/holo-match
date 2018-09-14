@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 public class MapManager : NetworkBehaviour {
 
-    public List<Map> mapRegistry = new List<Map>();
-    public List<string> mapNames;
+    private List<Map> mapRegistry = new List<Map>();
+    private List<string> mapNames = new List<string>();
 
     [SyncVar]
     public Map currentMap;
@@ -19,16 +19,24 @@ public class MapManager : NetworkBehaviour {
 
         AddMaps();
         currentMap = mapRegistry[0];
-
-        foreach (Map map in mapRegistry) {
-            mapNames.Add(map.name);
-            Debug.Log(map.name);
-        }
     }
 
     private void AddMaps() {
-        mapRegistry.Add(new Map("testLevel", "testLevel"));
-        mapRegistry.Add(new Map("testlevel1", "testlevel1"));
+        AddMapToRegistry(new Map("testLevel", "testLevel"));
+        AddMapToRegistry(new Map("testLevel1", "testLevel1"));
+    }
+
+    public void AddMapToRegistry(Map map) {
+        mapRegistry.Add(map);
+        mapNames.Add(map.name);
+    }
+
+    public List<Map> GetMapRegistry() {
+        return mapRegistry;
+    }
+
+    public List<string> GetMapNames() {
+        return mapNames;
     }
 
     public void SwitchMap(Map map) {

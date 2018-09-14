@@ -12,12 +12,12 @@ public class LobbyMenuController : MonoBehaviour {
     void Start () {
         play.onClick.AddListener(Play);
 
-        mapDropdown.AddOptions(MapManager.mapManager.mapNames);
+        mapDropdown.AddOptions(MapManager.mapManager.GetMapNames());
     }
 	
     void Play () {
         MapManager mapManager = MapManager.mapManager;
-        mapManager.SwitchMap(mapManager.mapRegistry[mapDropdown.value]);
+        mapManager.SwitchMap(mapManager.GetMapRegistry()[mapDropdown.value]);
     }
 
 }
