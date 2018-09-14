@@ -28,6 +28,7 @@ public class MapManager : NetworkBehaviour {
 
     private void AddMaps() {
         mapRegistry.Add(new Map("testLevel", "testLevel"));
+        mapRegistry.Add(new Map("testlevel1", "testlevel1"));
     }
 
     public void SwitchMap(Map map) {
