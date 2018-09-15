@@ -28,13 +28,15 @@ public class ModManager : MonoBehaviour {
 
     private void RegisterMaps (List<Type> registry) {
         foreach (var mod in registry) {
-            mod.GetMethod("RegisterMaps").Invoke(null, MapManager.mapManager);
+            dynamic modInstance = Activator.CreateInstance(mod); 
+            modInstance.RegisterMaps(MapManager.mapManager);
         } 
     }
 
     private void RegisterWeapons (List<Type> registry) {
         foreach (var mod in registry) {
-            mod.GetMethod("RegisterWeapons").Invoke(null, WeaponManager.weaponManager);
+            dynamic modInstance = Activator.CreateInstance(mod); 
+            modInstance.RegisterWeapons(WeaponManager.weaponManager);
         }
     }
 }
