@@ -12,18 +12,7 @@ public class ModManager : MonoBehaviour {
     private List<AssetBundle> assetBundleRegistry = new List<AssetBundle>();
 
     void Awake () {
-
         LoadAllMods();
-        foreach(var asm in AppDomain.CurrentDomain.GetAssemblies())
-        {
-            foreach (var type in asm.GetTypes())
-            {
-                if (type.BaseType == typeof(HoloMod)) {
-                    Debug.Log(type.Name);
-                    modRegistry.Add(type);
-                }
-            }
-        }
 
         RegisterMaps(modRegistry);
         RegisterWeapons(modRegistry);
@@ -36,7 +25,13 @@ public class ModManager : MonoBehaviour {
 
             if (File.Exists(Path.Combine(modDir, modName+".dll")))
             {
-                Assembly.Load(File.ReadAllBytes(Path.Combine(modDir, modName+".dll")));
+                Assembly asm = Assembly.Load(File.ReadAllBytes(Path.Combine(modDir, modName+".dll")));
+
+                foreach (Type type in asm.GetTypes())
+                {
+                    if (type.BaseType == typeof(HoloMod))
+                        modRegistry.Add(type);
+                }
 
                 foreach (string assetBundlePath in Directory.EnumerateFiles(modDir, "*.assetbundle")) {
                     assetBundleRegistry.Add(AssetBundle.LoadFromFile(assetBundlePath));
