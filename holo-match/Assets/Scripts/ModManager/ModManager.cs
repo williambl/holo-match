@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class ModManager : MonoBehaviour {
 
-    private List<Type> modRegistry = new List<Type>();
+    private Dictionary<Type, HoloMod> modRegistry = new Dictionary<Type, Holomod>();
     private List<AssetBundle> assetBundleRegistry = new List<AssetBundle>();
 
     void Awake () {
@@ -29,8 +29,9 @@ public class ModManager : MonoBehaviour {
 
                 foreach (Type type in asm.GetTypes())
                 {
-                    if (type.BaseType == typeof(HoloMod))
-                        modRegistry.Add(type);
+                    if (type.BaseType == typeof(HoloMod)) {
+                        modRegistry.Add(type, Activator.CreateInstance(type));
+                    }
                 }
 
                 foreach (string assetBundlePath in Directory.EnumerateFiles(modDir, "*.assetbundle")) {
@@ -40,17 +41,15 @@ public class ModManager : MonoBehaviour {
         }
     }
 
-    private void RegisterMaps (List<Type> registry) {
+    private void RegisterMaps (Dictionary<Type, HoloMod> registry) {
         foreach (var mod in registry) {
-            dynamic modInstance = Activator.CreateInstance(mod); 
-            modInstance.RegisterMaps(MapManager.mapManager);
+            mod.Value.RegisterMaps(MapManager.mapManager);
         } 
     }
 
-    private void RegisterWeapons (List<Type> registry) {
+    private void RegisterWeapons (Dictionary<Type, HoloMod> registry) {
         foreach (var mod in registry) {
-            dynamic modInstance = Activator.CreateInstance(mod); 
-            modInstance.RegisterWeapons(WeaponManager.weaponManager);
+            mod.Value.RegisterWeapons(WeaponManager.weaponManager);
         }
     }
 }
