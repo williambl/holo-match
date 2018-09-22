@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class ModManager : MonoBehaviour {
 
-    private Dictionary<Type, HoloMod> modRegistry = new Dictionary<Type, Holomod>();
+    private Dictionary<Type, HoloMod> modRegistry = new Dictionary<Type, HoloMod>();
     private List<AssetBundle> assetBundleRegistry = new List<AssetBundle>();
 
     void Awake () {
@@ -27,15 +27,20 @@ public class ModManager : MonoBehaviour {
             {
                 Assembly asm = Assembly.Load(File.ReadAllBytes(Path.Combine(modDir, modName+".dll")));
 
+                HoloMod modInstance = null;
+
                 foreach (Type type in asm.GetTypes())
                 {
                     if (type.BaseType == typeof(HoloMod)) {
-                        modRegistry.Add(type, Activator.CreateInstance(type));
+                        modInstance = (HoloMod)Activator.CreateInstance(type);
+                        modRegistry.Add(type, modInstance);
                     }
                 }
 
                 foreach (string assetBundlePath in Directory.EnumerateFiles(modDir, "*.assetbundle")) {
-                    assetBundleRegistry.Add(AssetBundle.LoadFromFile(assetBundlePath));
+                    AssetBundle assetBundle = AssetBundle.LoadFromFile(assetBundlePath);
+                    modInstance.assetBundles.Add(assetBundle);
+                    assetBundleRegistry.Add(assetBundle);
                 }
             }
         }
