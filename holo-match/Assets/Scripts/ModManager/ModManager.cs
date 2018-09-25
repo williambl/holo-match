@@ -21,7 +21,7 @@ public class ModManager : MonoBehaviour {
     private void LoadAllMods () {
         IEnumerable<String> modDirs = Directory.EnumerateDirectories(Path.Combine(Application.dataPath, "Mods"));
         foreach (String modDir in modDirs) {
-            String modName = Path.GetDirectoryName(modDir);
+            String modName = new DirectoryInfo(modDir).Name;
             Debug.Log("Looking in " + modDir + ", mod name " + modName);
 
             if (File.Exists(Path.Combine(modDir, modName+".dll")))
