@@ -22,22 +22,30 @@ public class ModManager : MonoBehaviour {
         IEnumerable<String> modDirs = Directory.EnumerateDirectories(Path.Combine(Application.dataPath, "Mods"));
         foreach (String modDir in modDirs) {
             String modName = Path.GetDirectoryName(modDir);
+            Debug.Log("Looking in " + modDir + ", mod name " + modName);
 
             if (File.Exists(Path.Combine(modDir, modName+".dll")))
             {
+                Debug.Log("(" + modName + ") dll found.");
+
                 Assembly asm = Assembly.Load(File.ReadAllBytes(Path.Combine(modDir, modName+".dll")));
+
+                Debug.Log("(" + modName + ") dll assembly loaded.");
 
                 HoloMod modInstance = null;
 
                 foreach (Type type in asm.GetTypes())
                 {
+                    Debug.Log("(" + modName + ") found type: " + type.Name);
                     if (type.BaseType == typeof(HoloMod)) {
+                        Debug.Log("(" + modName + ") found mod type: " + type.Name + ", registering");
                         modInstance = (HoloMod)Activator.CreateInstance(type);
                         modRegistry.Add(type, modInstance);
                     }
                 }
 
                 foreach (string assetBundlePath in Directory.EnumerateFiles(modDir, "*.assetbundle")) {
+                    Debug.Log("(" + modName + ") found assetbundle: " + Path.GetFileName(assetBundlePath));
                     AssetBundle assetBundle = AssetBundle.LoadFromFile(assetBundlePath);
                     modInstance.assetBundles.Add(assetBundle);
                     assetBundleRegistry.Add(assetBundle);
