@@ -7,7 +7,7 @@ public abstract class HoloMod {
 
     public string version;
 
-    public List<AssetBundle> assetBundles;
+    public List<AssetBundle> assetBundles = new List<AssetBundle>();
 
     public abstract void RegisterWeapons(WeaponManager manager);
 
