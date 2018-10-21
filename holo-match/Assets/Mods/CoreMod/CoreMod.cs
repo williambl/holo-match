@@ -11,4 +11,7 @@
         manager.AddMapToRegistry(new Map("testLevel", "testLevel"));
         manager.AddMapToRegistry(new Map("testLevel1", "testLevel1"));
     }
+
+    public override void RegisterProjectiles(ProjectileManager manager) {
+    }
 }

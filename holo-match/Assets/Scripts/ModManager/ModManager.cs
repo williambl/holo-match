@@ -15,6 +15,7 @@ public class ModManager : MonoBehaviour {
         LoadAllMods();
 
         RegisterMaps(modRegistry);
+        RegisterProjectiles(modRegistry);
         RegisterWeapons(modRegistry);
     }
 
@@ -65,4 +66,11 @@ public class ModManager : MonoBehaviour {
             mod.Value.RegisterWeapons(WeaponManager.weaponManager);
         }
     }
+
+    private void RegisterProjectiles (Dictionary<Type, HoloMod> registry) {
+        foreach (var mod in registry) {
+            mod.Value.RegisterProjectiles(ProjectileManager.projectileManager);
+        }
+    }
+
 }

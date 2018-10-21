@@ -12,4 +12,6 @@ public abstract class HoloMod {
     public abstract void RegisterWeapons(WeaponManager manager);
 
     public abstract void RegisterMaps(MapManager manager);
+
+    public abstract void RegisterProjectiles(ProjectileManager manager);
 }
