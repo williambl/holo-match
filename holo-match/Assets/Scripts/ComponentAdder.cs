@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ComponentAdder : MonoBehaviour {
 
-    string[] componentNames;
-    string modName;
+    public string[] componentNames;
+    public string modName;
 
     void Start () {
         Assembly assembly = ModManager.manager.GetAssemblyFromModName(modName);
