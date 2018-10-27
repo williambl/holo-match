@@ -73,4 +73,12 @@ public class ModManager : MonoBehaviour {
         }
     }
 
+    public Assembly GetAssemblyFromModName (string modName) {
+        foreach (Type type in modRegistry.Keys) {
+            if (type.Name == modName)
+                return Assembly.GetAssembly(type);
+        }
+        return null;
+    }
+
 }
