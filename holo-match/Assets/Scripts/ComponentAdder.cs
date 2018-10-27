@@ -9,7 +9,7 @@ public class ComponentAdder : MonoBehaviour {
     public string[] componentNames;
     public string modName;
 
-    void Start () {
+    void Awake () {
         Assembly assembly = ModManager.manager.GetAssemblyFromModName(modName);
         foreach (string componentName in componentNames) {
             gameObject.AddComponent(assembly.GetType(componentName));
