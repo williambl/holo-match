@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Networking;
 using System.Collections.Generic;
 
-public class ProjectileManager : NetworkBehaviour {
+public class ProjectileManager : MonoBehaviour {
 
     private List<GameObject> projectileRegistry = new List<GameObject>();
     private List<string> projectileNames = new List<string>();
@@ -11,7 +9,6 @@ public class ProjectileManager : NetworkBehaviour {
     public static ProjectileManager projectileManager;
 
     void Awake () {
-        DontDestroyOnLoad(gameObject);
         projectileManager = this;
     }
 
