@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class WeaponManager : MonoBehaviour {
 
@@ -25,7 +26,7 @@ public class WeaponManager : MonoBehaviour {
         weaponRegistry.Add(weapon);
         weaponNames.Add(weapon.name);
 
-        dynamic weaponComponent = weapon.GetComponent<Weapon>();
+        dynamic weaponComponent = Activator.CreateInstance(weapon.GetComponent<ComponentAdder>().GetWeaponComponentType());
 
         if (weaponComponent.slot == EnumSlot.PRIMARY) {
             primaryWeapons.Add(weapon);

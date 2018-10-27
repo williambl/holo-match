@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System;
 using UnityEngine;
 
 public class ComponentAdder : MonoBehaviour {
@@ -13,6 +14,11 @@ public class ComponentAdder : MonoBehaviour {
         foreach (string componentName in componentNames) {
             gameObject.AddComponent(assembly.GetType(componentName));
         }
+    }
+    
+    public Type GetWeaponComponentType() {
+        Assembly assembly = ModManager.manager.GetAssemblyFromModName(modName);
+        return assembly.GetType(componentNames[0]);
     }
 
 }
