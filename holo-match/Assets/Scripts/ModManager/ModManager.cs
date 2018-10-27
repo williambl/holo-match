@@ -11,7 +11,10 @@ public class ModManager : MonoBehaviour {
     private Dictionary<Type, HoloMod> modRegistry = new Dictionary<Type, HoloMod>();
     private List<AssetBundle> assetBundleRegistry = new List<AssetBundle>();
 
+    public static ModManager manager;
+
     void Awake () {
+        manager = this;
         LoadAllMods();
 
         RegisterMaps(modRegistry);
