@@ -54,8 +54,10 @@ public class Inventory : NetworkBehaviour {
     }
 
     void Update () {
-        if (!isLocalPlayer || pauseController.isPaused)
+        if (!isLocalPlayer || pauseController.isPaused) {
+            EquipWeapon();
             return;
+        }
 
         int previousEquippedWeapon = equippedWeapon;
 
